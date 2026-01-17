@@ -747,9 +747,8 @@ Build <span>credible skills</span> that employers actually trust.
 JobRiot Academy turns job seekers into credible candidates with focused, no-fluff lessons that map directly to hiring decisions.
 </p>
 <div class="hero-actions">
-<button class="btn-primary">
-Start a course
-<span>→</span>
+<button id="startCourseBtn" class="btn-primary">
+Start a course →
 </button>
 <button class="btn-ghost">
 View certification badges
@@ -761,6 +760,23 @@ View certification badges
 <span>• Mobile-first, distraction-free experience</span>
 </div>
 </div>
+<section class="ai-lesson-generator">
+<h2>AI Lesson Generator</h2>
+<p>Enter a topic and JobRiot Academy will generate a full lesson.</p>
+
+<input id="lessonTopic"
+type="text"
+placeholder="e.g., Professional communication"
+style="width:100%; padding:10px; border-radius:8px; margin-bottom:10px;">
+
+<button id="generateLessonBtn" class="btn-primary">
+Generate Lesson →
+</button>
+
+<div id="lessonOutput"
+style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
+</div>
+</section>
 
 <aside class="hero-card">
 <div class="hero-card-header">
@@ -1001,5 +1017,37 @@ Academy progress flows into the main app so employers see more than a resume—t
 </footer>
 </div>
 </div>
+<script>
+const generateBtn = document.getElementById("generateLessonBtn");
+const topicInput = document.getElementById("lessonTopic");
+const output = document.getElementById("lessonOutput");
+
+generateBtn.addEventListener("click", async () => {
+const topic = topicInput.value.trim();
+if (!topic) {
+output.innerHTML = "<p>Please enter a topic.</p>";
+return;
+}
+
+output.innerHTML = "<p>Generating lesson...</p>";
+
+const res = await fetch(
+"https://YOUR_PROJECT_ID.supabase.co/functions/v1/generate-lesson",
+{
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ topic }),
+}
+);
+
+const data = await res.json();
+
+if (data.lesson) {
+output.innerHTML = `<pre style="white-space:pre-wrap;">${data.lesson}</pre>`;
+} else {
+output.innerHTML = "<p>Error generating lesson.</p>";
+}
+});
+</script>
 </body>
 </html>
