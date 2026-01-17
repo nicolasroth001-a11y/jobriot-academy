@@ -790,6 +790,91 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <button class="btn-primary">Sign In</button>
   <p class="auth-note" style="margin-top:10px;">Learner accounts are always free.</p>
 </section>
+<!-- ========================= -->
+<!-- LEARNER DASHBOARD         -->
+<!-- ========================= -->
+<section id="learnerDashboard" style="display:none; padding:40px 20px;">
+  <h2>My Learning</h2>
+  <p>Welcome back. Continue where you left off.</p>
+
+  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+    <h3>Current Track: Customer Support Foundations</h3>
+    <p>3 of 8 lessons completed</p>
+    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:10px;">
+      <div style="width:40%; height:100%; background:#4ade80;"></div>
+    </div>
+    <button class="btn-primary" style="margin-top:15px;">Continue lesson</button>
+  </div>
+
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:20px;">
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Daily streak</h3>
+      <p>4 days in a row</p>
+    </div>
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Lessons completed</h3>
+      <p>12 total</p>
+    </div>
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Certifications</h3>
+      <p>Customer Support Basics</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- LEARNER PROFILE           -->
+<!-- ========================= -->
+<section id="learnerProfile" style="display:none; padding:40px 20px;">
+  <h2>Learner Profile</h2>
+  <p>Show employers what you’re building.</p>
+
+  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+    <h3>Profile Snapshot</h3>
+    <p><strong>Goal role:</strong> Customer Support Representative</p>
+    <p><strong>Key skills:</strong> Communication, De‑escalation, CRM basics</p>
+    <p><strong>Completed lessons:</strong> 12</p>
+  </div>
+
+  <div style="margin-top:20px;">
+    <h3>Skills in progress</h3>
+    <ul>
+      <li>Handling difficult customers</li>
+      <li>Writing professional emails</li>
+      <li>Using ticketing systems</li>
+    </ul>
+  </div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- LEARNER PROGRESS TRACKER  -->
+<!-- ========================= -->
+<section id="learnerProgress" style="display:none; padding:40px 20px;">
+  <h2>Progress Tracker</h2>
+  <p>Track your journey across lessons and tracks.</p>
+
+  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+    <h3>Customer Support Foundations</h3>
+    <p>Status: In progress</p>
+    <p>3 / 8 lessons completed</p>
+    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:10px;">
+      <div style="width:40%; height:100%; background:#4ade80;"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+    <h3>Workplace Communication</h3>
+    <p>Status: Not started</p>
+    <p>0 / 6 lessons completed</p>
+    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:10px;">
+      <div style="width:0%; height:100%; background:#4ade80;"></div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -805,6 +890,90 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 
   <button class="btn-primary">Sign In</button>
   <p class="auth-note" style="margin-top:10px;">Companies require an active subscription.</p>
+</section>
+<!-- ========================= -->
+<!-- COMPANY EMPLOYEES         -->
+<!-- ========================= -->
+<section id="companyEmployees" style="display:none; padding:40px 20px;">
+  <h2>Employees</h2>
+  <p>Manage who has access to JobRiot Academy training.</p>
+
+  <button class="btn-secondary" style="margin:15px 0;">Invite employee</button>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+    <thead>
+      <tr>
+        <th style="text-align:left; padding:8px;">Name</th>
+        <th style="text-align:left; padding:8px;">Role</th>
+        <th style="text-align:left; padding:8px;">Status</th>
+        <th style="text-align:left; padding:8px;">Last activity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:8px;">Alex Johnson</td>
+        <td style="padding:8px;">Support Agent</td>
+        <td style="padding:8px;">Active</td>
+        <td style="padding:8px;">Today</td>
+      </tr>
+      <tr>
+        <td style="padding:8px;">Maria Lopez</td>
+        <td style="padding:8px;">Support Agent</td>
+        <td style="padding:8px;">At risk</td>
+        <td style="padding:8px;">7 days ago</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- COMPANY ASSIGNMENTS       -->
+<!-- ========================= -->
+<section id="companyAssignments" style="display:none; padding:40px 20px;">
+  <h2>Training Programs</h2>
+  <p>Create and assign training to your team.</p>
+
+  <button class="btn-secondary" style="margin:15px 0;">Create new program</button>
+
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:10px;">
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Support Onboarding</h3>
+      <p>Assigned to: 8 employees</p>
+      <p>Status: Active</p>
+    </div>
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>De‑escalation Training</h3>
+      <p>Assigned to: 5 employees</p>
+      <p>Status: Draft</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- COMPANY REPORTS           -->
+<!-- ========================= -->
+<section id="companyReports" style="display:none; padding:40px 20px;">
+  <h2>Training Reports</h2>
+  <p>See how your team is performing.</p>
+
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:20px;">
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Completion rate</h3>
+      <p>76% of assigned lessons completed</p>
+    </div>
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>At-risk employees</h3>
+      <p>3 employees haven’t started training</p>
+    </div>
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Average time per lesson</h3>
+      <p>11 minutes</p>
+    </div>
+  </div>
 </section>
 
 
@@ -1163,5 +1332,52 @@ output.innerHTML = "<p>Error generating lesson.</p>";
 }
 });
 </script>
+<script>
+  // Fake sign-in flows to toggle views
+
+  const learnerSignInBtn = document.querySelector("#learnerSignIn .btn-primary");
+  const companySignInBtn = document.querySelector("#companySignIn .btn-primary");
+
+  const learnerSections = [
+    document.getElementById("learnerDashboard"),
+    document.getElementById("learnerProfile"),
+    document.getElementById("learnerProgress"),
+  ];
+
+  const companySections = [
+    document.getElementById("companyDashboard"),
+    document.getElementById("companyTraining"),
+    document.getElementById("companyEmployees"),
+    document.getElementById("companyAssignments"),
+    document.getElementById("companyReports"),
+  ];
+
+  function showLearnerView() {
+    learnerSections.forEach(sec => sec.style.display = "block");
+    companySections.forEach(sec => sec.style.display = "none");
+  }
+
+  function showCompanyView() {
+    companySections.forEach(sec => sec.style.display = "block");
+    learnerSections.forEach(sec => sec.style.display = "none");
+  }
+
+  if (learnerSignInBtn) {
+    learnerSignInBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      showLearnerView();
+      document.getElementById("learnerDashboard").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  if (companySignInBtn) {
+    companySignInBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      showCompanyView();
+      document.getElementById("companyDashboard").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+</script>
+
 </body>
 </html>
