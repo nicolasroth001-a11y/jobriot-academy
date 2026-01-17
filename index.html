@@ -777,6 +777,120 @@ Generate Lesson →
 style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 </div>
 </section>
+<!-- ========================= -->
+<!-- LEARNER SIGN-IN SECTION   -->
+<!-- ========================= -->
+<section id="learnerSignIn" class="auth-section" style="padding:40px 20px;">
+  <h2>Learner Sign‑In</h2>
+  <p>Access free lessons, track your progress, and grow your skills.</p>
+
+  <input type="email" placeholder="Email" class="auth-input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input type="password" placeholder="Password" class="auth-input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+  <button class="btn-primary">Sign In</button>
+  <p class="auth-note" style="margin-top:10px;">Learner accounts are always free.</p>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- COMPANY SIGN-IN SECTION   -->
+<!-- ========================= -->
+<section id="companySignIn" class="auth-section" style="padding:40px 20px;">
+  <h2>Company Sign‑In</h2>
+  <p>Manage employee training, assign lessons, and track performance.</p>
+
+  <input type="email" placeholder="Company Email" class="auth-input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input type="password" placeholder="Password" class="auth-input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+  <button class="btn-primary">Sign In</button>
+  <p class="auth-note" style="margin-top:10px;">Companies require an active subscription.</p>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- COMPANY DASHBOARD         -->
+<!-- ========================= -->
+<section id="companyDashboard" class="dashboard-section" style="display:none; padding:40px 20px;">
+  <h2>Company Dashboard</h2>
+  <p>Welcome to your training control center.</p>
+
+  <div class="dashboard-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
+
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Assign Training</h3>
+      <p>Create lessons and assign them to employees.</p>
+      <button class="btn-secondary">Open Training Tools</button>
+    </div>
+
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Employee Progress</h3>
+      <p>Track completion rates and performance.</p>
+      <button class="btn-secondary">View Reports</button>
+    </div>
+
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Manage Employees</h3>
+      <p>Add, remove, or update employee accounts.</p>
+      <button class="btn-secondary">Manage Team</button>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- COMPANY TRAINING TOOLS    -->
+<!-- ========================= -->
+<section id="companyTraining" class="training-section" style="display:none; padding:40px 20px;">
+  <h2>Company Training Tools</h2>
+  <p>Create lessons for your team using JobRiot AI.</p>
+
+  <input id="companyTrainingTopic" type="text" placeholder="Enter training topic..." style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+  <button id="companyGenerateBtn" class="btn-primary">Generate Training Lesson</button>
+
+  <div id="companyTrainingOutput" style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;"></div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- PRICING / PAYWALL         -->
+<!-- ========================= -->
+<section id="pricing" class="pricing-section" style="padding:40px 20px;">
+  <h2>Company Pricing</h2>
+  <p>JobRiot Academy is free for learners. Companies pay for training tools.</p>
+
+  <div class="pricing-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
+
+    <div class="pricing-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Monthly Plan</h3>
+      <p class="price" style="font-size:24px; margin:10px 0;">$29 / month</p>
+      <ul>
+        <li>Unlimited employee accounts</li>
+        <li>Unlimited AI‑generated lessons</li>
+        <li>Training dashboard access</li>
+      </ul>
+      <button class="btn-primary">Subscribe Monthly</button>
+    </div>
+
+    <div class="pricing-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Yearly Plan</h3>
+      <p class="price" style="font-size:24px; margin:10px 0;">$290 / year</p>
+      <ul>
+        <li>2 months free</li>
+        <li>Unlimited employee accounts</li>
+        <li>Unlimited AI‑generated lessons</li>
+        <li>Training dashboard access</li>
+      </ul>
+      <button class="btn-primary">Subscribe Yearly</button>
+    </div>
+
+  </div>
+</section>
 
 <aside class="hero-card">
 <div class="hero-card-header">
