@@ -1,327 +1,1005 @@
-!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JobRiot Academy</title>
 
-
-
 <style>
+:root {
+--bg-main: #050816;
+--bg-elevated: #0b1020;
+--bg-soft: #111827;
+--accent: #3b82f6;
+--accent-soft: #1d4ed8;
+--text-main: #e5e7eb;
+--text-muted: #9ca3af;
+--border-subtle: #1f2937;
+--success: #22c55e;
+--warning: #facc15;
+--danger: #f97373;
+--badge-bg: #111827;
+--radius-lg: 14px;
+--radius-md: 10px;
+--radius-pill: 999px;
+--shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
 
-/* Global Styles */
+* {
+box-sizing: border-box;
+}
 
 body {
-
-    font-family: Arial, sans-serif;
-
-    background-color: #FFFFFF;
-
-    color: #0A0A0A;
-
-    margin: 0;
-
-    padding: 0;
-
-    line-height: 1.6;
-
+margin: 0;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+sans-serif;
+background: radial-gradient(circle at top, #111827 0, #020617 55%);
+color: var(--text-main);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
 }
 
+a {
+color: inherit;
+text-decoration: none;
+}
 
+/* Layout */
+.page {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
 
-/* Header */
+.shell {
+width: 100%;
+max-width: 1120px;
+margin: 0 auto;
+padding: 20px 16px 40px;
+}
 
 header {
-
-    background-color: #2563EB;
-
-    color: #FFFFFF;
-
-    text-align: center;
-
-    padding: 20px 0;
-
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 0 8px;
+position: sticky;
+top: 0;
+z-index: 20;
+backdrop-filter: blur(16px);
+background: linear-gradient(
+to bottom,
+rgba(5, 8, 22, 0.96),
+rgba(5, 8, 22, 0.85),
+transparent
+);
 }
 
+.brand {
+display: flex;
+align-items: center;
+gap: 10px;
+}
 
+.brand-mark {
+width: 32px;
+height: 32px;
+border-radius: 10px;
+background: radial-gradient(circle at 20% 0, #60a5fa, #1d4ed8 55%, #020617);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #e5e7eb;
+font-weight: 700;
+font-size: 16px;
+box-shadow: 0 10px 30px rgba(37, 99, 235, 0.55);
+}
 
-/* Hero Section */
+.brand-text {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
 
+.brand-title {
+font-weight: 650;
+letter-spacing: 0.03em;
+font-size: 17px;
+}
+
+.brand-sub {
+font-size: 12px;
+color: var(--text-muted);
+}
+
+.header-cta {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.pill {
+border-radius: var(--radius-pill);
+padding: 6px 12px;
+font-size: 12px;
+border: 1px solid rgba(148, 163, 184, 0.35);
+color: var(--text-muted);
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: rgba(15, 23, 42, 0.8);
+}
+
+.pill-dot {
+width: 7px;
+height: 7px;
+border-radius: 999px;
+background: #22c55e;
+box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+}
+
+.btn-outline {
+border-radius: var(--radius-pill);
+padding: 7px 14px;
+font-size: 13px;
+border: 1px solid rgba(148, 163, 184, 0.5);
+color: var(--text-main);
+background: rgba(15, 23, 42, 0.7);
+cursor: pointer;
+transition: all 0.18s ease-out;
+}
+
+.btn-outline:hover {
+border-color: var(--accent);
+background: rgba(37, 99, 235, 0.12);
+}
+
+/* Hero */
 .hero {
-
-    text-align: center;
-
-    padding: 40px 20px;
-
-    background-color: #F0F6FF;
-
-    border-radius: 8px;
-
-    margin: 20px auto 40px;
-
-    max-width: 900px;
-
+display: grid;
+grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+gap: 28px;
+margin-top: 24px;
+align-items: center;
 }
 
-
-
-.hero h2 {
-
-    color: #2563EB;
-
-    margin-bottom: 10px;
-
+.hero-main {
+padding-right: 10px;
 }
 
+.hero-kicker {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 4px 10px;
+border-radius: var(--radius-pill);
+background: rgba(15, 23, 42, 0.9);
+border: 1px solid rgba(55, 65, 81, 0.9);
+font-size: 11px;
+color: var(--text-muted);
+margin-bottom: 14px;
+}
 
+.hero-kicker span {
+font-size: 11px;
+color: #a5b4fc;
+font-weight: 500;
+}
 
-/* Main Content */
+.hero-title {
+font-size: clamp(28px, 4vw, 36px);
+font-weight: 700;
+letter-spacing: 0.01em;
+margin: 0 0 10px;
+}
 
+.hero-title span {
+color: #60a5fa;
+}
+
+.hero-subtitle {
+font-size: 14px;
+color: var(--text-muted);
+max-width: 480px;
+margin-bottom: 18px;
+}
+
+.hero-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-bottom: 18px;
+}
+
+.btn-primary {
+border-radius: var(--radius-pill);
+padding: 9px 18px;
+font-size: 14px;
+border: none;
+cursor: pointer;
+background: linear-gradient(135deg, #2563eb, #1d4ed8);
+color: #e5e7eb;
+font-weight: 500;
+box-shadow: 0 14px 35px rgba(37, 99, 235, 0.55);
+display: inline-flex;
+align-items: center;
+gap: 8px;
+transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+}
+
+.btn-primary:hover {
+transform: translateY(-1px);
+box-shadow: 0 18px 40px rgba(37, 99, 235, 0.7);
+}
+
+.btn-ghost {
+border-radius: var(--radius-pill);
+padding: 9px 16px;
+font-size: 13px;
+border: 1px solid rgba(148, 163, 184, 0.5);
+background: rgba(15, 23, 42, 0.85);
+color: var(--text-main);
+cursor: pointer;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+transition: all 0.16s ease-out;
+}
+
+.btn-ghost:hover {
+border-color: var(--accent);
+background: rgba(30, 64, 175, 0.35);
+}
+
+.hero-meta {
+display: flex;
+flex-wrap: wrap;
+gap: 14px;
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.hero-meta span {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+}
+
+.dot {
+width: 6px;
+height: 6px;
+border-radius: 999px;
+background: #22c55e;
+}
+
+/* Hero side card */
+.hero-card {
+background: radial-gradient(circle at top, #1f2937, #020617 65%);
+border-radius: var(--radius-lg);
+padding: 18px 18px 16px;
+border: 1px solid rgba(55, 65, 81, 0.9);
+box-shadow: var(--shadow-soft);
+position: relative;
+overflow: hidden;
+}
+
+.hero-card-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 14px;
+}
+
+.hero-card-title {
+font-size: 13px;
+color: var(--text-muted);
+}
+
+.hero-card-badge {
+font-size: 11px;
+padding: 4px 9px;
+border-radius: var(--radius-pill);
+background: rgba(22, 163, 74, 0.15);
+color: #bbf7d0;
+border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+.hero-card-main {
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+gap: 12px;
+align-items: center;
+}
+
+.hero-card-metric {
+font-size: 26px;
+font-weight: 650;
+margin-bottom: 4px;
+}
+
+.hero-card-metric span {
+font-size: 13px;
+color: var(--text-muted);
+font-weight: 400;
+margin-left: 4px;
+}
+
+.hero-card-text {
+font-size: 12px;
+color: var(--text-muted);
+max-width: 220px;
+}
+
+.hero-card-list {
+font-size: 11px;
+color: var(--text-muted);
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.hero-card-list li {
+display: flex;
+align-items: center;
+gap: 6px;
+margin-bottom: 4px;
+}
+
+.hero-card-list li::before {
+content: "";
+width: 6px;
+height: 6px;
+border-radius: 999px;
+background: #60a5fa;
+}
+
+.hero-card-footer {
+margin-top: 12px;
+padding-top: 10px;
+border-top: 1px dashed rgba(55, 65, 81, 0.9);
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.hero-card-footer span strong {
+color: #e5e7eb;
+font-weight: 500;
+}
+
+/* Sections */
 main {
-
-    max-width: 900px;
-
-    margin: 0 auto;
-
-    padding: 20px;
-
+margin-top: 32px;
+display: flex;
+flex-direction: column;
+gap: 26px;
 }
 
-
-
-.content-section {
-
-    background-color: #F0F6FF;
-
-    padding: 20px;
-
-    border-radius: 8px;
-
+section {
+background: rgba(15, 23, 42, 0.9);
+border-radius: var(--radius-lg);
+border: 1px solid var(--border-subtle);
+padding: 18px 18px 20px;
+box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
 }
 
-
-
-h2 {
-
-    color: #2563EB;
-
+.section-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+gap: 12px;
+margin-bottom: 14px;
 }
 
-
-
-.feature {
-
-    margin-bottom: 40px;
-
+.section-title-block h2 {
+font-size: 18px;
+margin: 0 0 4px;
 }
 
-
-
-.feature h3 {
-
-    color: #2563EB;
-
+.section-title-block p {
+margin: 0;
+font-size: 12px;
+color: var(--text-muted);
 }
 
-
-
-ul {
-
-    list-style-type: disc;
-
-    margin-left: 20px;
-
+.section-tag {
+font-size: 11px;
+padding: 4px 9px;
+border-radius: var(--radius-pill);
+background: rgba(15, 23, 42, 0.9);
+border: 1px solid rgba(55, 65, 81, 0.9);
+color: var(--text-muted);
 }
 
+/* Features grid */
+.features-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 14px;
+}
 
+.feature-card {
+background: var(--bg-elevated);
+border-radius: var(--radius-md);
+border: 1px solid rgba(31, 41, 55, 0.9);
+padding: 12px 12px 13px;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.feature-label {
+font-size: 11px;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 0.08em;
+}
+
+.feature-title {
+font-size: 14px;
+font-weight: 600;
+}
+
+.feature-body {
+font-size: 12px;
+color: var(--text-muted);
+}
+
+.feature-list {
+margin: 6px 0 0;
+padding-left: 16px;
+font-size: 12px;
+color: var(--text-muted);
+}
+
+.feature-list li {
+margin-bottom: 3px;
+}
+
+/* Courses */
+.courses-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 14px;
+}
+
+.course-card {
+background: var(--bg-elevated);
+border-radius: var(--radius-md);
+border: 1px solid rgba(31, 41, 55, 0.9);
+padding: 12px 12px 13px;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.course-meta {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.course-title {
+font-size: 14px;
+font-weight: 600;
+}
+
+.course-desc {
+font-size: 12px;
+color: var(--text-muted);
+}
+
+.course-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+margin-top: 4px;
+}
+
+.course-tag {
+font-size: 10px;
+padding: 3px 7px;
+border-radius: var(--radius-pill);
+background: rgba(15, 23, 42, 0.9);
+border: 1px solid rgba(55, 65, 81, 0.9);
+color: var(--text-muted);
+}
+
+.course-footer {
+margin-top: 6px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.course-progress-bar {
+width: 100%;
+height: 5px;
+border-radius: 999px;
+background: #020617;
+overflow: hidden;
+margin-top: 4px;
+}
+
+.course-progress-fill {
+height: 100%;
+border-radius: 999px;
+background: linear-gradient(90deg, #22c55e, #4ade80);
+width: 40%;
+}
+
+/* Badges */
+.badges-layout {
+display: grid;
+grid-template-columns: 1.4fr 1fr;
+gap: 14px;
+}
+
+.badge-card {
+background: var(--bg-elevated);
+border-radius: var(--radius-md);
+border: 1px solid rgba(31, 41, 55, 0.9);
+padding: 12px 12px 13px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.badge-row {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.badge-icon {
+width: 40px;
+height: 40px;
+border-radius: 14px;
+background: radial-gradient(circle at 20% 0, #4ade80, #16a34a 55%, #052e16);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #ecfdf5;
+font-weight: 700;
+font-size: 18px;
+box-shadow: 0 12px 30px rgba(22, 163, 74, 0.7);
+}
+
+.badge-title {
+font-size: 14px;
+font-weight: 600;
+}
+
+.badge-sub {
+font-size: 12px;
+color: var(--text-muted);
+}
+
+.badge-meta {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.badge-pill {
+padding: 3px 8px;
+border-radius: var(--radius-pill);
+background: rgba(15, 23, 42, 0.9);
+border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.badge-side {
+font-size: 12px;
+color: var(--text-muted);
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.badge-side span strong {
+color: var(--text-main);
+}
+
+/* Integration */
+.integration-grid {
+display: grid;
+grid-template-columns: 1.4fr 1fr;
+gap: 14px;
+}
+
+.integration-card {
+background: var(--bg-elevated);
+border-radius: var(--radius-md);
+border: 1px solid rgba(31, 41, 55, 0.9);
+padding: 12px 12px 13px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.integration-flow {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+font-size: 11px;
+color: var(--text-muted);
+align-items: center;
+}
+
+.integration-step {
+padding: 4px 9px;
+border-radius: var(--radius-pill);
+background: rgba(15, 23, 42, 0.9);
+border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.integration-arrow {
+font-size: 14px;
+color: var(--text-muted);
+}
+
+.integration-side {
+font-size: 12px;
+color: var(--text-muted);
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
 
 /* Footer */
-
 footer {
-
-    text-align: center;
-
-    padding: 20px;
-
-    color: #FFFFFF;
-
-    background-color: #2563EB;
-
-    margin-top: 40px;
-
+margin-top: 26px;
+padding: 16px 0 8px;
+font-size: 11px;
+color: var(--text-muted);
+border-top: 1px solid rgba(31, 41, 55, 0.9);
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 8px;
 }
 
+footer span strong {
+color: var(--text-main);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+.hero {
+grid-template-columns: minmax(0, 1fr);
+}
+
+.hero-main {
+padding-right: 0;
+}
+
+.hero-card {
+margin-top: 4px;
+}
+
+.features-grid,
+.courses-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.badges-layout,
+.integration-grid {
+grid-template-columns: minmax(0, 1fr);
+}
+}
+
+@media (max-width: 640px) {
+header {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+
+.hero-actions {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.features-grid,
+.courses-grid {
+grid-template-columns: minmax(0, 1fr);
+}
+}
 </style>
-
-
-
 </head>
-
 <body>
-
-
-
+<div class="page">
+<div class="shell">
 <header>
-
-    <h1>JobRiot Academy</h1>
-
+<div class="brand">
+<div class="brand-mark">JR</div>
+<div class="brand-text">
+<div class="brand-title">JobRiot Academy</div>
+<div class="brand-sub">Skills. Credibility. Momentum.</div>
+</div>
+</div>
+<div class="header-cta">
+<div class="pill">
+<span class="pill-dot"></span>
+<span>Built for real hiring outcomes</span>
+</div>
+<button class="btn-outline">Open in JobRiot app</button>
+</div>
 </header>
 
-
-
 <section class="hero">
+<div class="hero-main">
+<div class="hero-kicker">
+<span>New</span> Short, practical tracks for real jobs
+</div>
+<h1 class="hero-title">
+Build <span>credible skills</span> that employers actually trust.
+</h1>
+<p class="hero-subtitle">
+JobRiot Academy turns job seekers into credible candidates with focused, no-fluff lessons that map directly to hiring decisions.
+</p>
+<div class="hero-actions">
+<button class="btn-primary">
+Start a course
+<span>→</span>
+</button>
+<button class="btn-ghost">
+View certification badges
+</button>
+</div>
+<div class="hero-meta">
+<span><span class="dot"></span> Designed for first-time and returning job seekers</span>
+<span>• 10–15 minute lessons</span>
+<span>• Mobile-first, distraction-free experience</span>
+</div>
+</div>
 
-    <h2>Build Skills. Build Credibility. Get Hired.</h2>
-
-    <p>Short, practical courses that prepare you for real jobs and real opportunities.</p>
-
+<aside class="hero-card">
+<div class="hero-card-header">
+<div class="hero-card-title">Candidate snapshot</div>
+<div class="hero-card-badge">JobRiot Certified</div>
+</div>
+<div class="hero-card-main">
+<div>
+<div class="hero-card-metric">
+4/6
+<span>courses completed</span>
+</div>
+<p class="hero-card-text">
+This learner has completed core credibility tracks and is actively building job-ready behavior.
+</p>
+</div>
+<ul class="hero-card-list">
+<li>Professional communication</li>
+<li>Reliability & follow-through</li>
+<li>Interview readiness</li>
+<li>Workplace conflict basics</li>
+</ul>
+</div>
+<div class="hero-card-footer">
+<span>Signal to employers: <strong>Ready to interview</strong></span>
+<span>Updated: <strong>Today</strong></span>
+</div>
+</aside>
 </section>
 
-
-
 <main>
-
-<section class="content-section">
-
-<h2>Core Features of JobRiot Academy</h2>
-
-
-
-<div class="feature">
-
-<h3>1. Short, Practical Courses</h3>
-
-<p>Bite-sized lessons that teach real-world skills:</p>
-
-<ul>
-
-<li>How to communicate professionally</li>
-
-<li>How to show reliability</li>
-
-<li>How to interview</li>
-
-<li>How to write a credible resume</li>
-
-<li>How to handle workplace conflict</li>
-
-</ul>
-
-<p>These are fast, simple, and immediately useful.</p>
-
+<!-- Core features -->
+<section>
+<div class="section-header">
+<div class="section-title-block">
+<h2>Core experience</h2>
+<p>Everything in JobRiot Academy is built to be fast, focused, and credible.</p>
+</div>
+<div class="section-tag">MVP-ready feature set</div>
 </div>
 
+<div class="features-grid">
+<article class="feature-card">
+<div class="feature-label">01 · Courses</div>
+<div class="feature-title">Short, practical tracks</div>
+<p class="feature-body">
+Each course is built around one hiring signal: reliability, communication, interviewing, or workplace behavior.
+</p>
+<ul class="feature-list">
+<li>10–15 minute lessons</li>
+<li>Plain-language examples</li>
+<li>Actionable scripts and templates</li>
+</ul>
+</article>
 
-
-<div class="feature">
-
-<h3>2. Lesson-Based Learning</h3>
-
-<p>Each course is broken into:</p>
-
-<ul>
-
-<li>Lessons</li>
-
+<article class="feature-card">
+<div class="feature-label">02 · Lessons</div>
+<div class="feature-title">Lesson-based learning</div>
+<p class="feature-body">
+Every lesson is structured to be digestible and repeatable, even on a phone during a break.
+</p>
+<ul class="feature-list">
 <li>Key takeaways</li>
-
-<li>Real examples</li>
-
+<li>Real-world scenarios</li>
 <li>Quick practice prompts</li>
-
 </ul>
+</article>
 
-<p>This keeps everything digestible and beginner-friendly.</p>
+<article class="feature-card">
+<div class="feature-label">03 · Credibility</div>
+<div class="feature-title">JobRiot certification badges</div>
+<p class="feature-body">
+Completing a course unlocks a JobRiot badge that employers can see directly in the app.
+</p>
+<ul class="feature-list">
+<li>Shareable profile badge</li>
+<li>Verification inside JobRiot</li>
+<li>Clear hiring signal: “This person follows through.”</li>
+</ul>
+</article>
+</div>
+</section>
 
+<!-- Courses -->
+<section>
+<div class="section-header">
+<div class="section-title-block">
+<h2>Launch courses</h2>
+<p>Start with the behaviors that move hiring decisions.</p>
+</div>
+<div class="section-tag">Phase 1 curriculum</div>
 </div>
 
+<div class="courses-grid">
+<article class="course-card">
+<div class="course-meta">
+<span>Course · 45–60 minutes</span>
+<span>Beginner</span>
+</div>
+<div class="course-title">Professional communication</div>
+<p class="course-desc">
+How to message employers, respond on time, and sound like someone they can trust.
+</p>
+<div class="course-tags">
+<span class="course-tag">Text & email scripts</span>
+<span class="course-tag">Follow-up templates</span>
+</div>
+<div class="course-footer">
+<span>Lessons: 6</span>
+<span>Badge: Communication ready</span>
+</div>
+</article>
 
+<article class="course-card">
+<div class="course-meta">
+<span>Course · 45–60 minutes</span>
+<span>Beginner</span>
+</div>
+<div class="course-title">Reliability & follow-through</div>
+<p class="course-desc">
+How to show up, follow through, and make employers feel safe betting on you.
+</p>
+<div class="course-tags">
+<span class="course-tag">Attendance habits</span>
+<span class="course-tag">Expectation setting</span>
+</div>
+<div class="course-footer">
+<span>Lessons: 5</span>
+<span>Badge: Reliable candidate</span>
+</div>
+</article>
 
-<div class="feature">
+<article class="course-card">
+<div class="course-meta">
+<span>Course · 45–60 minutes</span>
+<span>Beginner</span>
+</div>
+<div class="course-title">Interview readiness</div>
+<p class="course-desc">
+How to walk into an interview prepared, calm, and clear about your value.
+</p>
+<div class="course-tags">
+<span class="course-tag">Common questions</span>
+<span class="course-tag">Practice prompts</span>
+</div>
+<div class="course-footer">
+<span>Lessons: 6</span>
+<span>Badge: Interview ready</span>
+</div>
+</article>
+</div>
+</section>
 
-<h3>3. JobRiot Certification Badges</h3>
-
-<p>When a user completes a course, they earn:</p>
-
-<ul>
-
-<li>A “JobRiot Certified” badge</li>
-
-<li>A shareable link</li>
-
-<li>A badge visible to employers inside the JobRiot app</li>
-
-</ul>
-
-<p>This is the credibility engine.</p>
-
+<!-- Badges & progress -->
+<section>
+<div class="section-header">
+<div class="section-title-block">
+<h2>Badges & progress</h2>
+<p>Make credibility visible—to the learner and to employers.</p>
+</div>
+<div class="section-tag">Signal, not noise</div>
 </div>
 
-
-
-<div class="feature">
-
-<h3>4. Progress Tracking</h3>
-
-<p>Even in the MVP, users should see:</p>
-
-<ul>
-
-<li>Courses started</li>
-
-<li>Courses completed</li>
-
-<li>Lessons left</li>
-
-</ul>
-
-<p>This can be local at first, backend later.</p>
-
+<div class="badges-layout">
+<div class="badge-card">
+<div class="badge-row">
+<div class="badge-icon">JR</div>
+<div>
+<div class="badge-title">JobRiot Certified</div>
+<div class="badge-sub">
+A simple, visual signal that this person has done the work.
+</div>
+</div>
+</div>
+<div class="badge-meta">
+<span class="badge-pill">Visible on JobRiot profile</span>
+<span class="badge-pill">Filterable by employers</span>
+<span class="badge-pill">Shareable link for resumes</span>
+</div>
 </div>
 
+<div class="badge-card">
+<div class="badge-side">
+<span>Progress tracking shows:</span>
+<span>• Courses started vs. completed</span>
+<span>• Lessons remaining</span>
+<span>• Last activity date</span>
+<span><strong>Phase 1:</strong> Local tracking · <strong>Phase 2:</strong> Backend + analytics</span>
+</div>
+</div>
+</div>
+</section>
 
-
-<div class="feature">
-
-<h3>5. Integration With the JobRiot App</h3>
-
-<p>The Academy connects directly to the main app:</p>
-
-<ul>
-
-<li>“Open in Academy” button</li>
-
-<li>Badges displayed on the user’s profile</li>
-
-<li>Employers can filter by “Certified”</li>
-
-</ul>
-
-<p>This ties the whole ecosystem together.</p>
-
+<!-- Integration & mobile -->
+<section>
+<div class="section-header">
+<div class="section-title-block">
+<h2>Integration & access</h2>
+<p>Academy is not a side project—it’s part of the JobRiot ecosystem.</p>
+</div>
+<div class="section-tag">Built to plug in</div>
 </div>
 
+<div class="integration-grid">
+<div class="integration-card">
+<div class="feature-label">App integration</div>
+<div class="feature-title">Directly connected to JobRiot</div>
+<p class="feature-body">
+Academy progress flows into the main app so employers see more than a resume—they see behavior.
+</p>
+<div class="integration-flow">
+<span class="integration-step">Complete course</span>
+<span class="integration-arrow">→</span>
+<span class="integration-step">Earn badge</span>
+<span class="integration-arrow">→</span>
+<span class="integration-step">Badge appears on profile</span>
+<span class="integration-arrow">→</span>
+<span class="integration-step">Employers filter by “Certified”</span>
+</div>
+</div>
 
+<div class="integration-card">
+<div class="feature-label">Access</div>
+<div class="feature-title">Mobile-first, distraction-free</div>
+<div class="integration-side">
+<span>• Works on iPhone, Android, and desktop</span>
+<span>• No log-in friction for first-time learners (MVP)</span>
+<span>• Designed for low-light, late-night learning</span>
+</div>
+</div>
+</div>
+</section>
+</main>
 
-<div class="feature">
-
-<h3>6. Mobile-Friendly Web Experience</h3>
-
-<p>The Academy works perfectly on:</p>
-
-<ul>
-
-<li>iPhone</li>
-
-<li>Android</li>
-
-<li>Desktop</li>
-
-</ul>
-
-<p>This ensures job seekers can learn anywhere.</p>
+<footer>
+<span>© <strong>JobRiot Academy</strong> · Built for real hiring outcomes.</span>
+<span>Phase 1: MVP web · Phase 2: Deep app integration.</span>
+</footer>
+</div>
+</div>
+</body>
+</html>
