@@ -817,6 +817,23 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <button class="btn-primary">Sign In</button>
   <p class="auth-note" style="margin-top:10px;">Learner accounts are always free.</p>
 </section>
+
+<section id="learnerSignUp" class="auth-section" style="display:none; padding:40px 20px;">
+  <h2>Create Your JobRiot Account</h2>
+  <p>Build your credibility across platforms.</p>
+
+  <input id="learnerSignUpName" type="text" placeholder="Full name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input id="learnerSignUpEmail" type="email" placeholder="Email" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input id="learnerSignUpPassword" type="password" placeholder="Password" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+  <button class="btn-primary" style="margin-top:10px;">Create Account</button>
+
+  <p style="margin-top:15px; text-align:center;">
+    Already have an account?
+    <span onclick="showLearnerSignIn()" style="color:#4ade80; cursor:pointer;">Sign in</span>
+  </p>
+</section>
+
 <!-- ========================= -->
 <!-- LEARNER DASHBOARD         -->
 <!-- ========================= -->
@@ -963,6 +980,24 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <button class="btn-primary">Sign In</button>
   <p class="auth-note" style="margin-top:10px;">Companies require an active subscription.</p>
 </section>
+
+<section id="companySignUp" class="auth-section" style="display:none; padding:40px 20px;">
+  <h2>Register Your Company</h2>
+  <p>Verify your business and unlock credibility across platforms.</p>
+
+  <input id="companySignUpName" type="text" placeholder="Company name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input id="companySignUpEmail" type="email" placeholder="Work email" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input id="companySignUpPassword" type="password" placeholder="Password" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+  <input id="companySignUpWebsite" type="text" placeholder="Company website (optional)" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+  <button class="btn-primary" style="margin-top:10px;">Create Company Account</button>
+
+  <p style="margin-top:15px; text-align:center;">
+    Already verified?
+    <span onclick="showCompanySignIn()" style="color:#4ade80; cursor:pointer;">Sign in</span>
+  </p>
+</section>
+
 <!-- ========================= -->
 <!-- COMPANY EMPLOYEES         -->
 <!-- ========================= -->
@@ -1518,6 +1553,26 @@ output.innerHTML = "<p>Error generating lesson.</p>";
       document.getElementById("companyDashboard").scrollIntoView({ behavior: "smooth" });
     });
   }
+function showLearnerSignUp() {
+  document.getElementById("learnerSignIn").style.display = "none";
+  document.getElementById("learnerSignUp").style.display = "block";
+}
+
+function showLearnerSignIn() {
+  document.getElementById("learnerSignUp").style.display = "none";
+  document.getElementById("learnerSignIn").style.display = "block";
+}
+
+function showCompanySignUp() {
+  document.getElementById("companySignIn").style.display = "none";
+  document.getElementById("companySignUp").style.display = "block";
+}
+
+function showCompanySignIn() {
+  document.getElementById("companySignUp").style.display = "none";
+  document.getElementById("companySignIn").style.display = "block";
+}
+
 </script>
 
 </body>
