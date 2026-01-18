@@ -949,7 +949,7 @@ grid-template-columns: minmax(0, 1fr);
     ">
       <h3 style="font-size:20px; margin-bottom:8px;">Monthly</h3>
       <p style="color:#9ca3af; margin-bottom:12px;">Full access, billed monthly.</p>
-      <p style="font-size:32px; font-weight:700; margin-bottom:20px;">$9.99</p>
+      <p style="font-size:32px; font-weight:700; margin-bottom:20px;">$29.99</p>
       <button class="btn-primary" style="width:100%;">Subscribe</button>
     </div>
 
@@ -976,7 +976,7 @@ grid-template-columns: minmax(0, 1fr);
 
       <h3 style="font-size:20px; margin-bottom:8px;">Yearly</h3>
       <p style="color:#9ca3af; margin-bottom:12px;">Save more with annual billing.</p>
-      <p style="font-size:32px; font-weight:700; margin-bottom:20px;">$99.99</p>
+      <p style="font-size:32px; font-weight:700; margin-bottom:20px;">$290.00</p>
       <button class="btn-primary" style="width:100%;">Subscribe</button>
     </div>
 
@@ -1106,7 +1106,7 @@ grid-template-columns: minmax(0, 1fr);
   ">
     <button onclick="scrollToSection('trackCatalog')" class="btn-ghost">Tracks</button>
     <button onclick="scrollToSection('learnerDashboard')" class="btn-ghost">Dashboard</button>
-    <button onclick="scrollToSection('pricing')" class="btn-ghost">Pricing</button>
+    <button onclick="scrollToSection('pricingSection')" class="btn-ghost">Pricing</button>
     <button onclick="scrollToSection('companySignIn')" class="btn-primary">For Companies</button>
   </div>
 
@@ -1130,7 +1130,7 @@ grid-template-columns: minmax(0, 1fr);
 ">
   <button onclick="scrollToSection('trackCatalog')" class="btn-ghost" style="width:100%; text-align:left;">Tracks</button>
   <button onclick="scrollToSection('learnerDashboard')" class="btn-ghost" style="width:100%; text-align:left;">Dashboard</button>
-  <button onclick="scrollToSection('pricing')" class="btn-ghost" style="width:100%; text-align:left;">Pricing</button>
+  <button onclick="scrollToSection('pricingSection')" class="btn-ghost" style="width:100%; text-align:left;">Pricing</button>
   <button onclick="scrollToSection('companySignIn')" class="btn-primary" style="width:100%; margin-top:10px;">For Companies</button>
 </div>
 
@@ -1215,19 +1215,7 @@ grid-template-columns: minmax(0, 1fr);
 </section> 
 
 <section class="ai-lesson-generator">
-  <h2>AI Lesson Generator</h2>
-  <p>Enter a topic and JobRiot Academy will generate a full lesson.</p>
-
-  <input id="lessonTopic"
-    type="text"
-    placeholder="e.g., Professional communication"
-    style="width:100%; padding:10px; border-radius:8px; margin-bottom:10px;">
-
-  <button id="generateLessonBtn" class="btn-primary">
-    Generate Lesson →
-  </button>
-</section>
-
+  
 <h2>AI Lesson Generator</h2>
 <p>Enter a topic and JobRiot Academy will generate a full lesson.</p>
 
@@ -1639,10 +1627,6 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
       </div>
 
     </div>
-
-  </div>
-</section>
-
 
   </div>
 </section>
@@ -2630,39 +2614,35 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <span>Phase 1: MVP web · Phase 2: Deep app integration.</span>
 </footer>
 
-
-<script>
-const generateBtn = document.getElementById("generateLessonBtn");
-const topicInput = document.getElementById("lessonTopic");
-const output = document.getElementById("lessonOutput");
-
 generateBtn.addEventListener("click", async () => {
-const topic = topicInput.value.trim();
-if (!topic) {
-output.innerHTML = "<p>Please enter a topic.</p>";
-return;
-}
+  const topic = topicInput.value.trim();
+  if (!topic) {
+    output.innerHTML = "<p>Please enter a topic.</p>";
+    return;
+  }
 
-output.innerHTML = "<p>Generating lesson...</p>";
+  output.innerHTML = "<p>Generating lesson...</p>";
 
-const res = await fetch(
-"https://pchbjpxxamzfqshubtvh.supabase.co/functions/v1/generate-lesson",
-{
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify({ topic }),
-}
-);
+  const res = await fetch(
+    "https://pchbjpxxamzfqshubtvh.supabase.co/functions/v1/generate-lesson",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic }),
+    }
+  );
 
-const data = await res.json();
+  const data = await res.json();
 
-if (data.lesson) {
-output.innerHTML = `<pre style="white-space:pre-wrap;">${data.lesson}</pre>`;
-} else {
-output.innerHTML = "<p>Error generating lesson.</p>";
-}
+  output.innerHTML = `
+    <h3>${data.title}</h3>
+    <p>${data.summary}</p>
+    <div>${data.content}</div>
+  `;
 });
+
 </script>
+
 <script>
   // Fake sign-in flows to toggle views
 
@@ -2795,16 +2775,8 @@ function showCompanySignIn() {
   document.getElementById("companySignUp").style.display = "none";
   document.getElementById("companySignIn").style.display = "block";
 }
-function showCompanyDashboard() {
-  document.getElementById("companyEmployees").style.display = "none";
-  document.getElementById("companyAssignments").style.display = "none";
-  document.getElementById("companyReports").style.display = "none";
-
-  // Show the main dashboard section
-  document.getElementById("companyDashboard").style.display = "block";
-}
 
 </script>
-
 </body>
 </html>
+
