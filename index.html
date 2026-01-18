@@ -30,6 +30,19 @@ box-sizing: border-box;
 }
 
 body {
+<nav class="top-nav" style="display:flex; justify-content:space-between; padding:20px; align-items:center;">
+  <div class="nav-left" style="display:flex; gap:20px;">
+    <a href="#" style="color:white;">Home</a>
+    <a href="#trackCatalog" style="color:white;">Learn</a>
+    <a href="#pricing" style="color:white;">Pricing</a>
+  </div>
+
+  <div class="nav-right" style="display:flex; gap:20px;">
+    <a href="#learnerSignIn" style="color:white;">Sign In</a>
+    <button class="btn-ghost">Open in JobRiot App</button>
+  </div>
+</nav>
+
 margin: 0;
 font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 sans-serif;
@@ -711,7 +724,20 @@ align-items: flex-start;
 .features-grid,
 .courses-grid {
 grid-template-columns: minmax(0, 1fr);
-}
+@media (max-width: 600px) {
+  .dashboard-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  nav.top-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
@@ -780,6 +806,7 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 <!-- ========================= -->
 <!-- LEARNER SIGN-IN SECTION   -->
 <!-- ========================= -->
+<button class="btn-ghost" onclick="location.reload()" style="margin-bottom:20px;">Log Out</button>
 <section id="learnerSignIn" class="auth-section" style="padding:40px 20px;">
   <h2>Learner Sign‑In</h2>
   <p>Access free lessons, track your progress, and grow your skills.</p>
@@ -793,6 +820,8 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 <!-- ========================= -->
 <!-- LEARNER DASHBOARD         -->
 <!-- ========================= -->
+<button class="btn-ghost" onclick="location.reload()" style="margin-bottom:20px;">Log Out</button>
+<section id="learnerSignIn" class="auth-section" style="padding:40px 20px;">
 <section id="learnerDashboard" style="display:none; padding:40px 20px;">
   <h2>My Learning</h2>
   <p>Welcome back. Continue where you left off.</p>
@@ -875,6 +904,49 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
     </div>
   </div>
 </section>
+<section id="lessonPlayer" style="display:none; padding:40px 20px;"> <h2>Lesson Player</h2> <div id="lessonPlayerContent" style="background:#0b1020; padding:20px; border-radius:12px; margin-top:20px;"> <p>Select a lesson to begin.</p> </div> <button class="btn-primary" style="margin-top:20px;">Mark as complete</button> 
+</section>
+<section id="trackCatalog" style="padding:40px 20px;">
+  <h2>Track Catalog</h2>
+  <p>Choose a learning path to begin.</p>
+
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Customer Support Foundations</h3>
+      <p>8 lessons</p>
+      <button class="btn-primary">Start Track</button>
+    </div>
+
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Workplace Communication</h3>
+      <p>6 lessons</p>
+      <button class="btn-primary">Start Track</button>
+    </div>
+
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Remote Work Readiness</h3>
+      <p>5 lessons</p>
+      <button class="btn-primary">Start Track</button>
+    </div>
+  </div>
+</section>
+<section id="certificationBadges" style="padding:40px 20px;">
+  <h2>Certification Badges</h2>
+  <p>Earn badges as you complete tracks.</p>
+
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); margin-top:20px;">
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Customer Support Basics</h3>
+      <p>Status: Earned</p>
+    </div>
+
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Communication Pro</h3>
+      <p>Status: In progress</p>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -943,6 +1015,7 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
       <p>Assigned to: 8 employees</p>
       <p>Status: Active</p>
     </div>
+<div class="locked-overlay" style=" position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; border-radius:12px; color:white; font-weight:bold; "> Subscribe to unlock </div> </div>
     <div style="background:#0b1020; padding:20px; border-radius:12px;">
       <h3>De‑escalation Training</h3>
       <p>Assigned to: 5 employees</p>
@@ -961,21 +1034,51 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <p>See how your team is performing.</p>
 
   <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:20px;">
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>Completion rate</h3>
-      <p>76% of assigned lessons completed</p>
+
+    <div style="position:relative;">
+      <div style="background:#0b1020; padding:20px; border-radius:12px;">
+        <h3>Completion rate</h3>
+        <p>76% of assigned lessons completed</p>
+      </div>
+
+      <div class="locked-overlay" style="
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+        align-items:center; border-radius:12px; color:white; font-weight:bold;">
+        Subscribe to unlock
+      </div>
     </div>
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>At-risk employees</h3>
-      <p>3 employees haven’t started training</p>
+
+    <div style="position:relative;">
+      <div style="background:#0b1020; padding:20px; border-radius:12px;">
+        <h3>At-risk employees</h3>
+        <p>3 employees haven’t started training</p>
+      </div>
+
+      <div class="locked-overlay" style="
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+        align-items:center; border-radius:12px; color:white; font-weight:bold;">
+        Subscribe to unlock
+      </div>
     </div>
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>Average time per lesson</h3>
-      <p>11 minutes</p>
+
+    <div style="position:relative;">
+      <div style="background:#0b1020; padding:20px; border-radius:12px;">
+        <h3>Average time per lesson</h3>
+        <p>11 minutes</p>
+      </div>
+
+      <div class="locked-overlay" style="
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+        align-items:center; border-radius:12px; color:white; font-weight:bold;">
+        Subscribe to unlock
+      </div>
     </div>
+
   </div>
 </section>
-
 
 
 <!-- ========================= -->
@@ -987,43 +1090,74 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 
   <div class="dashboard-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
 
-    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>Assign Training</h3>
-      <p>Create lessons and assign them to employees.</p>
-      <button class="btn-secondary">Open Training Tools</button>
+    <div style="position:relative;">
+      <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+        <h3>Assign Training</h3>
+        <p>Create lessons and assign them to employees.</p>
+        <button class="btn-secondary">Open Training Tools</button>
+      </div>
+
+      <div class="locked-overlay" style="
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+        align-items:center; border-radius:12px; color:white; font-weight:bold;">
+        Subscribe to unlock
+      </div>
     </div>
 
-    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>Employee Progress</h3>
-      <p>Track completion rates and performance.</p>
-      <button class="btn-secondary">View Reports</button>
+    <div style="position:relative;">
+      <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+        <h3>Employee Progress</h3>
+        <p>Track completion rates and performance.</p>
+        <button class="btn-secondary">View Reports</button>
+      </div>
+
+      <div class="locked-overlay" style="
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+        align-items:center; border-radius:12px; color:white; font-weight:bold;">
+        Subscribe to unlock
+      </div>
     </div>
 
-    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>Manage Employees</h3>
-      <p>Add, remove, or update employee accounts.</p>
-      <button class="btn-secondary">Manage Team</button>
+    <div style="position:relative;">
+      <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+        <h3>Manage Employees</h3>
+        <p>Add, remove, or update employee accounts.</p>
+        <button class="btn-secondary">Manage Team</button>
+      </div>
+
+      <div class="locked-overlay" style="
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+        align-items:center; border-radius:12px; color:white; font-weight:bold;">
+        Subscribe to unlock
+      </div>
     </div>
 
   </div>
 </section>
 
 
-
 <!-- ========================= -->
 <!-- COMPANY TRAINING TOOLS    -->
 <!-- ========================= -->
-<section id="companyTraining" class="training-section" style="display:none; padding:40px 20px;">
+<section id="companyTraining" class="training-section" style="display:none; padding:40px 20px; position:relative;">
   <h2>Company Training Tools</h2>
   <p>Create lessons for your team using JobRiot AI.</p>
 
   <input id="companyTrainingTopic" type="text" placeholder="Enter training topic..." style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
-
   <button id="companyGenerateBtn" class="btn-primary">Generate Training Lesson</button>
 
   <div id="companyTrainingOutput" style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;"></div>
-</section>
 
+  <div class="locked-overlay" style="
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+    align-items:center; border-radius:12px; color:white; font-weight:bold;">
+    Subscribe to unlock
+  </div>
+</section>
 
 
 <!-- ========================= -->
@@ -1353,14 +1487,21 @@ output.innerHTML = "<p>Error generating lesson.</p>";
   ];
 
   function showLearnerView() {
-    learnerSections.forEach(sec => sec.style.display = "block");
-    companySections.forEach(sec => sec.style.display = "none");
-  }
+  learnerSections.forEach(sec => sec.style.display = "block");
+  companySections.forEach(sec => sec.style.display = "none");
 
-  function showCompanyView() {
-    companySections.forEach(sec => sec.style.display = "block");
-    learnerSections.forEach(sec => sec.style.display = "none");
-  }
+  // Hide learner sign-in after login
+  document.getElementById("learnerSignIn").style.display = "none";
+}
+
+ function showCompanyView() {
+  companySections.forEach(sec => sec.style.display = "block");
+  learnerSections.forEach(sec => sec.style.display = "none");
+
+  // Hide company sign-in after login
+  document.getElementById("companySignIn").style.display = "none";
+}
+
 
   if (learnerSignInBtn) {
     learnerSignInBtn.addEventListener("click", (e) => {
