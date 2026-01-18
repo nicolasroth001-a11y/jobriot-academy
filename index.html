@@ -30,18 +30,6 @@ box-sizing: border-box;
 }
 
 body {
-<nav class="top-nav" style="display:flex; justify-content:space-between; padding:20px; align-items:center;">
-  <div class="nav-left" style="display:flex; gap:20px;">
-    <a href="#" style="color:white;">Home</a>
-    <a href="#trackCatalog" style="color:white;">Learn</a>
-    <a href="#pricing" style="color:white;">Pricing</a>
-  </div>
-
-  <div class="nav-right" style="display:flex; gap:20px;">
-    <a href="#learnerSignIn" style="color:white;">Sign In</a>
-    <button class="btn-ghost">Open in JobRiot App</button>
-  </div>
-</nav>
 
 margin: 0;
 font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -708,22 +696,24 @@ grid-template-columns: repeat(2, minmax(0, 1fr));
 grid-template-columns: minmax(0, 1fr);
 }
 }
-
 @media (max-width: 640px) {
-header {
-flex-direction: column;
-align-items: flex-start;
-gap: 10px;
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .features-grid,
+  .courses-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
-.hero-actions {
-flex-direction: column;
-align-items: flex-start;
-}
-
-.features-grid,
-.courses-grid {
-grid-template-columns: minmax(0, 1fr);
 @media (max-width: 600px) {
   .dashboard-grid,
   .pricing-grid {
@@ -742,6 +732,93 @@ grid-template-columns: minmax(0, 1fr);
 </style>
 </head>
 <body>
+<!-- ========================= -->
+<!-- GLOBAL NAVIGATION BAR     -->
+<!-- ========================= -->
+<nav style="
+  width:100%;
+  padding:16px 24px;
+  background:#0b0f1a;
+  border-bottom:1px solid #1f2937;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+">
+
+  <!-- Logo -->
+  <div style="font-weight:bold; font-size:20px; letter-spacing:0.5px;">
+    JobRiot Academy
+  </div>
+
+  <!-- Desktop Links -->
+  <div class="nav-links" style="
+    display:flex;
+    gap:24px;
+    align-items:center;
+  ">
+    <button onclick="scrollToSection('trackCatalog')" class="btn-ghost">Tracks</button>
+    <button onclick="scrollToSection('learnerDashboard')" class="btn-ghost">Dashboard</button>
+    <button onclick="scrollToSection('pricing')" class="btn-ghost">Pricing</button>
+    <button onclick="scrollToSection('companySignIn')" class="btn-primary">For Companies</button>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button id="mobileMenuBtn" style="
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:24px;
+  ">☰</button>
+
+</nav>
+
+<!-- Mobile Menu Drawer -->
+<div id="mobileMenu" style="
+  display:none;
+  background:#0b0f1a;
+  border-bottom:1px solid #1f2937;
+  padding:20px;
+">
+  <button onclick="scrollToSection('trackCatalog')" class="btn-ghost" style="width:100%; text-align:left;">Tracks</button>
+  <button onclick="scrollToSection('learnerDashboard')" class="btn-ghost" style="width:100%; text-align:left;">Dashboard</button>
+  <button onclick="scrollToSection('pricing')" class="btn-ghost" style="width:100%; text-align:left;">Pricing</button>
+  <button onclick="scrollToSection('companySignIn')" class="btn-primary" style="width:100%; margin-top:10px;">For Companies</button>
+</div>
+
+<script>
+  // Smooth scroll helper
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  function updateNavForScreen() {
+    if (window.innerWidth < 700) {
+      mobileBtn.style.display = "block";
+      document.querySelector(".nav-links").style.display = "none";
+    } else {
+      mobileBtn.style.display = "none";
+      document.querySelector(".nav-links").style.display = "flex";
+      mobileMenu.style.display = "none";
+    }
+  }
+
+  mobileBtn.addEventListener("click", () => {
+    mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
+  });
+
+  window.addEventListener("resize", updateNavForScreen);
+  updateNavForScreen();
+</script>
+
 <div class="page">
 <div class="shell">
 <header>
@@ -762,31 +839,50 @@ grid-template-columns: minmax(0, 1fr);
 </header>
 
 <section class="hero">
-<div class="hero-main">
-<div class="hero-kicker">
-<span>New</span> Short, practical tracks for real jobs
-</div>
-<h1 class="hero-title">
-Build <span>credible skills</span> that employers actually trust.
-</h1>
-<p class="hero-subtitle">
-JobRiot Academy turns job seekers into credible candidates with focused, no-fluff lessons that map directly to hiring decisions.
-</p>
-<div class="hero-actions">
-<button id="startCourseBtn" class="btn-primary">
-Start a course →
-</button>
-<button class="btn-ghost">
-View certification badges
-</button>
-</div>
-<div class="hero-meta">
-<span><span class="dot"></span> Designed for first-time and returning job seekers</span>
-<span>• 10–15 minute lessons</span>
-<span>• Mobile-first, distraction-free experience</span>
-</div>
-</div>
+  <div class="hero-main">
+    <div class="hero-kicker">
+      <span>New</span> Short, practical tracks for real jobs
+    </div>
+
+    <h1 class="hero-title">
+      Build <span>credible skills</span> that employers actually trust.
+    </h1>
+
+    <p class="hero-subtitle">
+      JobRiot Academy turns job seekers into credible candidates with focused, no-fluff lessons that map directly to hiring decisions.
+    </p>
+
+    <div class="hero-actions">
+      <button id="startCourseBtn" class="btn-primary">
+        Start a course →
+      </button>
+      <button class="btn-ghost">
+        View certification badges
+      </button>
+    </div>
+
+    <div class="hero-meta">
+      <span><span class="dot"></span> Designed for first-time and returning job seekers</span>
+      <span>• 10–15 minute lessons</span>
+      <span>• Mobile-first, distraction-free experience</span>
+    </div>
+  </div>
+</section> 
+
 <section class="ai-lesson-generator">
+  <h2>AI Lesson Generator</h2>
+  <p>Enter a topic and JobRiot Academy will generate a full lesson.</p>
+
+  <input id="lessonTopic"
+    type="text"
+    placeholder="e.g., Professional communication"
+    style="width:100%; padding:10px; border-radius:8px; margin-bottom:10px;">
+
+  <button id="generateLessonBtn" class="btn-primary">
+    Generate Lesson →
+  </button>
+</section>
+
 <h2>AI Lesson Generator</h2>
 <p>Enter a topic and JobRiot Academy will generate a full lesson.</p>
 
@@ -838,37 +934,43 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 <!-- LEARNER DASHBOARD         -->
 <!-- ========================= -->
 <button class="btn-ghost" onclick="location.reload()" style="margin-bottom:20px;">Log Out</button>
-<section id="learnerSignIn" class="auth-section" style="padding:40px 20px;">
+
 <section id="learnerDashboard" style="display:none; padding:40px 20px;">
   <h2>My Learning</h2>
   <p>Welcome back. Continue where you left off.</p>
 
-  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+  <!-- Current Track -->
+  <div style="margin-top:25px; background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
     <h3>Current Track: Customer Support Foundations</h3>
-    <p>3 of 8 lessons completed</p>
-    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:10px;">
+    <p style="margin-top:6px; color:#9ca3af;">3 of 8 lessons completed</p>
+
+    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:12px;">
       <div style="width:40%; height:100%; background:#4ade80;"></div>
     </div>
+
     <button class="btn-primary" style="margin-top:15px;">Continue lesson</button>
   </div>
 
-  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:20px;">
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+  <!-- Stats Grid -->
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:25px;">
+
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Daily streak</h3>
-      <p>4 days in a row</p>
+      <p style="margin-top:6px; color:#9ca3af;">4 days in a row</p>
     </div>
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Lessons completed</h3>
-      <p>12 total</p>
+      <p style="margin-top:6px; color:#9ca3af;">12 total</p>
     </div>
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Certifications</h3>
-      <p>Customer Support Basics</p>
+      <p style="margin-top:6px; color:#9ca3af;">Customer Support Basics</p>
     </div>
+
   </div>
 </section>
-
-
 
 <!-- ========================= -->
 <!-- LEARNER PROFILE           -->
@@ -877,23 +979,29 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <h2>Learner Profile</h2>
   <p>Show employers what you’re building.</p>
 
-  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
-    <h3>Profile Snapshot</h3>
-    <p><strong>Goal role:</strong> Customer Support Representative</p>
-    <p><strong>Key skills:</strong> Communication, De‑escalation, CRM basics</p>
-    <p><strong>Completed lessons:</strong> 12</p>
+  <!-- Profile Snapshot -->
+  <div style="margin-top:25px; background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
+    <h3 style="margin-bottom:10px;">Profile Snapshot</h3>
+
+    <div style="display:flex; flex-direction:column; gap:6px; font-size:15px;">
+      <p><strong>Goal role:</strong> Customer Support Representative</p>
+      <p><strong>Key skills:</strong> Communication, De‑escalation, CRM basics</p>
+      <p><strong>Completed lessons:</strong> 12</p>
+    </div>
   </div>
 
-  <div style="margin-top:20px;">
-    <h3>Skills in progress</h3>
-    <ul>
+  <!-- Skills in Progress -->
+  <div style="margin-top:30px; background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
+    <h3 style="margin-bottom:10px;">Skills in progress</h3>
+
+    <ul style="line-height:1.7; color:#e5e7eb; margin-left:15px;">
       <li>Handling difficult customers</li>
       <li>Writing professional emails</li>
       <li>Using ticketing systems</li>
     </ul>
   </div>
-</section>
 
+</section>
 
 
 <!-- ========================= -->
@@ -903,64 +1011,91 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   <h2>Progress Tracker</h2>
   <p>Track your journey across lessons and tracks.</p>
 
-  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+  <!-- Track 1 -->
+  <div style="margin-top:25px; background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
     <h3>Customer Support Foundations</h3>
-    <p>Status: In progress</p>
-    <p>3 / 8 lessons completed</p>
-    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:10px;">
+    <p style="margin-top:6px; color:#9ca3af;">Status: In progress</p>
+    <p style="margin-top:2px;">3 / 8 lessons completed</p>
+
+    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:12px;">
       <div style="width:40%; height:100%; background:#4ade80;"></div>
     </div>
   </div>
 
-  <div style="margin-top:20px; background:#0b1020; padding:20px; border-radius:12px;">
+  <!-- Track 2 -->
+  <div style="margin-top:25px; background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
     <h3>Workplace Communication</h3>
-    <p>Status: Not started</p>
-    <p>0 / 6 lessons completed</p>
-    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:10px;">
+    <p style="margin-top:6px; color:#9ca3af;">Status: Not started</p>
+    <p style="margin-top:2px;">0 / 6 lessons completed</p>
+
+    <div style="background:#1a2238; border-radius:999px; overflow:hidden; height:10px; margin-top:12px;">
       <div style="width:0%; height:100%; background:#4ade80;"></div>
     </div>
   </div>
 </section>
-<section id="lessonPlayer" style="display:none; padding:40px 20px;"> <h2>Lesson Player</h2> <div id="lessonPlayerContent" style="background:#0b1020; padding:20px; border-radius:12px; margin-top:20px;"> <p>Select a lesson to begin.</p> </div> <button class="btn-primary" style="margin-top:20px;">Mark as complete</button> 
+
+<!-- ========================= -->
+<!-- LESSON PLAYER             -->
+<!-- ========================= -->
+<section id="lessonPlayer" style="display:none; padding:40px 20px;">
+  <h2>Lesson Player</h2>
+
+  <div id="lessonPlayerContent" style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937; margin-top:20px;">
+    <p>Select a lesson to begin.</p>
+  </div>
+
+  <button class="btn-primary" style="margin-top:20px;">Mark as complete</button>
 </section>
+
+<!-- ========================= -->
+<!-- TRACK CATALOG             -->
+<!-- ========================= -->
 <section id="trackCatalog" style="padding:40px 20px;">
   <h2>Track Catalog</h2>
   <p>Choose a learning path to begin.</p>
 
-  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:25px;">
+
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Customer Support Foundations</h3>
-      <p>8 lessons</p>
-      <button class="btn-primary">Start Track</button>
+      <p style="margin-top:6px; color:#9ca3af;">8 lessons</p>
+      <button class="btn-primary" style="margin-top:12px;">Start Track</button>
     </div>
 
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Workplace Communication</h3>
-      <p>6 lessons</p>
-      <button class="btn-primary">Start Track</button>
+      <p style="margin-top:6px; color:#9ca3af;">6 lessons</p>
+      <button class="btn-primary" style="margin-top:12px;">Start Track</button>
     </div>
 
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Remote Work Readiness</h3>
-      <p>5 lessons</p>
-      <button class="btn-primary">Start Track</button>
+      <p style="margin-top:6px; color:#9ca3af;">5 lessons</p>
+      <button class="btn-primary" style="margin-top:12px;">Start Track</button>
     </div>
+
   </div>
 </section>
+
+<!-- ========================= -->
+<!-- CERTIFICATION BADGES      -->
+<!-- ========================= -->
 <section id="certificationBadges" style="padding:40px 20px;">
   <h2>Certification Badges</h2>
   <p>Earn badges as you complete tracks.</p>
 
-  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); margin-top:20px;">
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); margin-top:25px;">
+
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Customer Support Basics</h3>
-      <p>Status: Earned</p>
+      <p style="margin-top:6px; color:#4ade80;">Status: Earned</p>
     </div>
 
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+    <div style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Communication Pro</h3>
-      <p>Status: In progress</p>
+      <p style="margin-top:6px; color:#fbbf24;">Status: In progress</p>
     </div>
+
   </div>
 </section>
 
@@ -1001,130 +1136,593 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
 <!-- ========================= -->
 <!-- COMPANY EMPLOYEES         -->
 <!-- ========================= -->
-<section id="companyEmployees" style="display:none; padding:40px 20px;">
-  <h2>Employees</h2>
-  <p>Manage who has access to JobRiot Academy training.</p>
+<section id="companyEmployees" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
 
-  <button class="btn-secondary" style="margin:15px 0;">Invite employee</button>
+  <div style="max-width:1200px; margin:0 auto;">
 
-  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
-    <thead>
-      <tr>
-        <th style="text-align:left; padding:8px;">Name</th>
-        <th style="text-align:left; padding:8px;">Role</th>
-        <th style="text-align:left; padding:8px;">Status</th>
-        <th style="text-align:left; padding:8px;">Last activity</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding:8px;">Alex Johnson</td>
-        <td style="padding:8px;">Support Agent</td>
-        <td style="padding:8px;">Active</td>
-        <td style="padding:8px;">Today</td>
-      </tr>
-      <tr>
-        <td style="padding:8px;">Maria Lopez</td>
-        <td style="padding:8px;">Support Agent</td>
-        <td style="padding:8px;">At risk</td>
-        <td style="padding:8px;">7 days ago</td>
-      </tr>
-    </tbody>
-  </table>
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Employees
+    </h2>
+
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      View, manage, and track your employees’ training progress.
+    </p>
+
+    <!-- Employee Actions -->
+    <div style="display:flex; gap:12px; margin-bottom:20px;">
+      <button class="btn-primary">Add Employee</button>
+      <button class="btn-ghost">Import CSV</button>
+    </div>
+
+    <!-- Employee Table -->
+    <div style="
+      background:#111827;
+      border:1px solid #1f2937;
+      border-radius:12px;
+      overflow:hidden;
+    ">
+      <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <thead style="background:#1f2937; color:#e5e7eb;">
+          <tr>
+            <th style="text-align:left; padding:12px;">Name</th>
+            <th style="text-align:left; padding:12px;">Email</th>
+            <th style="text-align:left; padding:12px;">Status</th>
+            <th style="text-align:left; padding:12px;">Progress</th>
+            <th style="text-align:left; padding:12px;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!-- Example Employee Row -->
+          <tr style="border-top:1px solid #1f2937;">
+            <td style="padding:12px; color:white;">John Carter</td>
+            <td style="padding:12px; color:#9ca3af;">john@company.com</td>
+            <td style="padding:12px;">
+              <span style="
+                background:#065f46;
+                color:white;
+                padding:4px 8px;
+                border-radius:6px;
+                font-size:12px;
+              ">Active</span>
+            </td>
+            <td style="padding:12px; color:#9ca3af;">72%</td>
+            <td style="padding:12px;">
+              <button class="btn-ghost">View</button>
+            </td>
+          </tr>
+
+          <!-- Example Employee Row -->
+          <tr style="border-top:1px solid #1f2937;">
+            <td style="padding:12px; color:white;">Maria Lopez</td>
+            <td style="padding:12px; color:#9ca3af;">maria@company.com</td>
+            <td style="padding:12px;">
+              <span style="
+                background:#1e3a8a;
+                color:white;
+                padding:4px 8px;
+                border-radius:6px;
+                font-size:12px;
+              ">Invited</span>
+            </td>
+            <td style="padding:12px; color:#9ca3af;">0%</td>
+            <td style="padding:12px;">
+              <button class="btn-ghost">Resend Invite</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </section>
-
-
 
 <!-- ========================= -->
 <!-- COMPANY ASSIGNMENTS       -->
 <!-- ========================= -->
-<section id="companyAssignments" style="display:none; padding:40px 20px;">
-  <h2>Training Programs</h2>
-  <p>Create and assign training to your team.</p>
+<section id="companyAssignments" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
 
-  <button class="btn-secondary" style="margin:15px 0;">Create new program</button>
+  <div style="max-width:1200px; margin:0 auto;">
 
-  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:10px;">
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>Support Onboarding</h3>
-      <p>Assigned to: 8 employees</p>
-      <p>Status: Active</p>
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Assignments
+    </h2>
+
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      Create, manage, and track training assignments for your employees.
+    </p>
+
+    <!-- Assignment Actions -->
+    <div style="display:flex; gap:12px; margin-bottom:20px;">
+      <button class="btn-primary">Create New Assignment</button>
+      <button class="btn-ghost">View All Programs</button>
     </div>
-<div class="locked-overlay" style=" position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; border-radius:12px; color:white; font-weight:bold; "> Subscribe to unlock </div> </div>
-    <div style="background:#0b1020; padding:20px; border-radius:12px;">
-      <h3>De‑escalation Training</h3>
-      <p>Assigned to: 5 employees</p>
-      <p>Status: Draft</p>
+
+    <!-- Assignment Grid -->
+    <div style="
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    ">
+
+      <!-- Assignment Card 1 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+        position:relative;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Support Onboarding</h3>
+        <p style="color:#9ca3af; margin-bottom:6px;">Assigned to: 8 employees</p>
+        <p style="color:#9ca3af; margin-bottom:12px;">Status: Active</p>
+
+        <!-- Locked Overlay -->
+        <div style="
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0,0,0,0.6);
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          border-radius:12px;
+          color:white;
+          font-weight:bold;
+        ">
+          Subscribe to unlock
+        </div>
+      </div>
+
+      <!-- Assignment Card 2 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">De‑escalation Training</h3>
+        <p style="color:#9ca3af; margin-bottom:6px;">Assigned to: 5 employees</p>
+        <p style="color:#9ca3af; margin-bottom:12px;">Status: Draft</p>
+        <button class="btn-ghost">Edit Program</button>
+      </div>
+
     </div>
+
   </div>
 </section>
 
 
+  </div>
+</section>
 
 <!-- ========================= -->
 <!-- COMPANY REPORTS           -->
 <!-- ========================= -->
-<section id="companyReports" style="display:none; padding:40px 20px;">
-  <h2>Training Reports</h2>
-  <p>See how your team is performing.</p>
+<section id="companyReports" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
 
-  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:20px;">
+  <div style="max-width:1200px; margin:0 auto;">
 
-    <div style="position:relative;">
-      <div style="background:#0b1020; padding:20px; border-radius:12px;">
-        <h3>Completion rate</h3>
-        <p>76% of assigned lessons completed</p>
-      </div>
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Reports & Analytics
+    </h2>
 
-      <div class="locked-overlay" style="
-        position:absolute; top:0; left:0; width:100%; height:100%;
-        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
-        align-items:center; border-radius:12px; color:white; font-weight:bold;">
-        Subscribe to unlock
-      </div>
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      Track employee progress, training completion, and overall performance.
+    </p>
+
+    <!-- Report Filters -->
+    <div style="
+      display:flex;
+      gap:12px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    ">
+      <button class="btn-ghost">Last 7 Days</button>
+      <button class="btn-ghost">Last 30 Days</button>
+      <button class="btn-ghost">This Quarter</button>
+      <button class="btn-ghost">All Time</button>
     </div>
 
-    <div style="position:relative;">
-      <div style="background:#0b1020; padding:20px; border-radius:12px;">
-        <h3>At-risk employees</h3>
-        <p>3 employees haven’t started training</p>
+    <!-- Reports Grid -->
+    <div style="
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    ">
+
+      <!-- Report Card 1 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Training Completion</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Percentage of employees who completed assigned training.
+        </p>
+        <div style="font-size:32px; font-weight:bold; color:white;">72%</div>
       </div>
 
-      <div class="locked-overlay" style="
-        position:absolute; top:0; left:0; width:100%; height:100%;
-        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
-        align-items:center; border-radius:12px; color:white; font-weight:bold;">
-        Subscribe to unlock
+      <!-- Report Card 2 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Active Employees</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Employees currently engaged in training.
+        </p>
+        <div style="font-size:32px; font-weight:bold; color:white;">14</div>
       </div>
-    </div>
 
-    <div style="position:relative;">
-      <div style="background:#0b1020; padding:20px; border-radius:12px;">
-        <h3>Average time per lesson</h3>
-        <p>11 minutes</p>
+      <!-- Report Card 3 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Assignments Created</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Total training assignments created by your company.
+        </p>
+        <div style="font-size:32px; font-weight:bold; color:white;">6</div>
       </div>
 
-      <div class="locked-overlay" style="
-        position:absolute; top:0; left:0; width:100%; height:100%;
-        background:rgba(0,0,0,0.6); display:flex; justify-content:center;
-        align-items:center; border-radius:12px; color:white; font-weight:bold;">
-        Subscribe to unlock
+      <!-- Report Card 4 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Completion Trend</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Month‑over‑month improvement in training completion.
+        </p>
+        <div style="font-size:32px; font-weight:bold; color:white;">+18%</div>
       </div>
+
     </div>
 
   </div>
 </section>
+
+<!-- ========================= -->
+<!-- COMPANY BILLING           -->
+<!-- ========================= -->
+<section id="companyBilling" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
+
+  <div style="max-width:1200px; margin:0 auto;">
+
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Billing & Subscription
+    </h2>
+
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      Manage your subscription, payment methods, and billing history.
+    </p>
+
+    <!-- Current Plan Card -->
+    <div style="
+      background:#111827;
+      border:1px solid #1f2937;
+      padding:24px;
+      border-radius:12px;
+      margin-bottom:24px;
+    ">
+      <h3 style="font-size:18px; margin-bottom:8px;">Current Plan</h3>
+      <p style="color:#9ca3af; margin-bottom:12px;">
+        You are currently on the <strong>Free Company Plan</strong>.
+      </p>
+
+      <button class="btn-primary">Upgrade to Employer Pro</button>
+    </div>
+
+    <!-- Payment Method -->
+    <div style="
+      background:#111827;
+      border:1px solid #1f2937;
+      padding:24px;
+      border-radius:12px;
+      margin-bottom:24px;
+    ">
+      <h3 style="font-size:18px; margin-bottom:8px;">Payment Method</h3>
+      <p style="color:#9ca3af; margin-bottom:12px;">
+        No payment method on file.
+      </p>
+
+      <button class="btn-ghost">Add Payment Method</button>
+    </div>
+
+    <!-- Billing History Table -->
+    <div style="
+      background:#111827;
+      border:1px solid #1f2937;
+      border-radius:12px;
+      overflow:hidden;
+    ">
+      <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <thead style="background:#1f2937; color:#e5e7eb;">
+          <tr>
+            <th style="text-align:left; padding:12px;">Date</th>
+            <th style="text-align:left; padding:12px;">Description</th>
+            <th style="text-align:left; padding:12px;">Amount</th>
+            <th style="text-align:left; padding:12px;">Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!-- Example Row -->
+          <tr style="border-top:1px solid #1f2937;">
+            <td style="padding:12px; color:#9ca3af;">—</td>
+            <td style="padding:12px; color:#9ca3af;">No billing history</td>
+            <td style="padding:12px; color:#9ca3af;">—</td>
+            <td style="padding:12px; color:#9ca3af;">—</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================= -->
+<!-- COMPANY SETTINGS          -->
+<!-- ========================= -->
+<section id="companySettings" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
+
+  <div style="max-width:1200px; margin:0 auto;">
+
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Company Settings
+    </h2>
+
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      Manage your company profile, preferences, and security settings.
+    </p>
+
+    <!-- Settings Grid -->
+    <div style="
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    ">
+
+      <!-- Company Profile -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Company Profile</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Update your company name, website, and contact details.
+        </p>
+        <button class="btn-ghost">Edit Profile</button>
+      </div>
+
+      <!-- Notification Preferences -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Notifications</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Control email alerts and training notifications.
+        </p>
+        <button class="btn-ghost">Manage Notifications</button>
+      </div>
+
+      <!-- Security Settings -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Security</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Manage passwords, authentication, and access controls.
+        </p>
+        <button class="btn-ghost">Security Settings</button>
+      </div>
+
+      <!-- API Keys (Future Feature) -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+        position:relative;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">API Keys</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Generate and manage API keys for integrations.
+        </p>
+
+        <!-- Locked Overlay -->
+        <div style="
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0,0,0,0.6);
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          border-radius:12px;
+          color:white;
+          font-weight:bold;
+        ">
+          Coming Soon
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ========================= -->
+<!-- COMPANY SIDEBAR NAV       -->
+<!-- ========================= -->
+<aside id="companySidebar" style="
+  width:240px;
+  background:#0b0f1a;
+  border-right:1px solid #1f2937;
+  height:100vh;
+  position:fixed;
+  top:0;
+  left:0;
+  padding:24px 16px;
+  display:none; /* Hidden until company logs in */
+  flex-direction:column;
+  gap:20px;
+  z-index:900;
+">
+
+  <div style="font-size:20px; font-weight:bold; margin-bottom:10px;">
+    Company Admin
+  </div>
+
+  <nav style="display:flex; flex-direction:column; gap:12px;">
+
+  <button class="btn-ghost" onclick="showCompanyDashboard()" style="text-align:left;">
+    Dashboard
+  </button>
+
+  <button class="btn-ghost" onclick="scrollToSection('companyTraining')" style="text-align:left;">
+    Training Tools
+  </button>
+
+  <button class="btn-ghost" onclick="scrollToSection('companyEmployees')" style="text-align:left;">
+    Employees
+  </button>
+
+  <button class="btn-ghost" onclick="scrollToSection('companyAssignments')" style="text-align:left;">
+    Assignments
+  </button>
+
+  <button class="btn-ghost" onclick="scrollToSection('companyReports')" style="text-align:left;">
+    Reports
+  </button>
+
+ 
+  <button class="btn-ghost" onclick="scrollToSection('companyBilling')" style="text-align:left;">
+    Billing
+  </button>
+
+
+  <button class="btn-ghost" onclick="scrollToSection('companySettings')" style="text-align:left;">
+    Settings
+  </button>
+
+</nav>
+
+
+</aside>
+
+<!-- Mobile Sidebar Toggle -->
+<button id="companySidebarToggle" style="
+  display:none;
+  position:fixed;
+  top:16px;
+  left:16px;
+  z-index:950;
+  background:#1f2937;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  color:white;
+">
+  ☰
+</button>
+
+<script>
+  // Show sidebar when company logs in
+  function showCompanyView() {
+    document.getElementById("companySidebar").style.display = "flex";
+    document.getElementById("companySidebarToggle").style.display = "block";
+  }
+
+  // Mobile toggle
+  const sidebar = document.getElementById("companySidebar");
+  const toggleBtn = document.getElementById("companySidebarToggle");
+
+  toggleBtn.addEventListener("click", () => {
+    sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
+  });
+</script>
 
 
 <!-- ========================= -->
 <!-- COMPANY DASHBOARD         -->
 <!-- ========================= -->
-<section id="companyDashboard" class="dashboard-section" style="display:none; padding:40px 20px;">
-  <h2>Company Dashboard</h2>
-  <p>Welcome to your training control center.</p>
+<section id="companyDashboard" class="dashboard-section" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
 
-  <div class="dashboard-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
+  <div style="max-width:1200px; margin:0 auto;">
 
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Company Dashboard
+    </h2>
+
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      Welcome to your training control center.
+    </p>
+
+
+  <!-- Metrics Row -->
+  <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); margin-top:25px;">
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3 style="margin-bottom:6px;">Active Employees</h3>
+      <p style="font-size:22px; font-weight:bold; color:#4ade80;">12</p>
+    </div>
+
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3 style="margin-bottom:6px;">Programs Running</h3>
+      <p style="font-size:22px; font-weight:bold; color:#60a5fa;">3</p>
+    </div>
+
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3 style="margin-bottom:6px;">Avg Completion</h3>
+      <p style="font-size:22px; font-weight:bold; color:#fbbf24;">76%</p>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div style="margin-top:30px; display:flex; gap:12px; flex-wrap:wrap;">
+    <button class="btn-secondary">Assign Training</button>
+    <button class="btn-secondary">Invite Employees</button>
+    <button class="btn-secondary">Create Program</button>
+    <button class="btn-secondary">View Reports</button>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="dashboard-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:30px;">
+
+    <!-- Assign Training -->
     <div style="position:relative;">
       <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
         <h3>Assign Training</h3>
@@ -1140,6 +1738,7 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
       </div>
     </div>
 
+    <!-- Employee Progress -->
     <div style="position:relative;">
       <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
         <h3>Employee Progress</h3>
@@ -1155,6 +1754,7 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
       </div>
     </div>
 
+    <!-- Manage Employees -->
     <div style="position:relative;">
       <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
         <h3>Manage Employees</h3>
@@ -1170,305 +1770,408 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
       </div>
     </div>
 
+    <!-- Activity Feed -->
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Recent Activity</h3>
+      <div style="margin-top:10px; display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--text-muted);">
+        <div>• Alex Johnson completed Lesson 3</div>
+        <div>• Maria Lopez assigned to De‑escalation Training</div>
+        <div>• New employee invited: Jordan Smith</div>
+      </div>
+    </div>
+
+    <!-- Subscription Status -->
+    <div style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Subscription</h3>
+      <p style="margin-top:6px;">Current plan: <strong>Free</strong></p>
+      <p>Upgrade to unlock analytics, reporting, and training tools.</p>
+      <button class="btn-primary" style="margin-top:10px;">Upgrade Plan</button>
+    </div>
+
   </div>
 </section>
 
 
 <!-- ========================= -->
-<!-- COMPANY TRAINING TOOLS    -->
+<!-- COMPANY TRAINING          -->
 <!-- ========================= -->
-<section id="companyTraining" class="training-section" style="display:none; padding:40px 20px; position:relative;">
-  <h2>Company Training Tools</h2>
-  <p>Create lessons for your team using JobRiot AI.</p>
+<section id="companyTraining" 
+  style="display:none; padding:40px 20px; padding-left:260px; margin-top:20px;">
 
-  <input id="companyTrainingTopic" type="text" placeholder="Enter training topic..." style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
-  <button id="companyGenerateBtn" class="btn-primary">Generate Training Lesson</button>
+  <div style="max-width:1200px; margin:0 auto;">
 
-  <div id="companyTrainingOutput" style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;"></div>
+    <h2 style="margin-bottom:10px; font-size:24px; font-weight:600;">
+      Training Tools
+    </h2>
 
-  <div class="locked-overlay" style="
-    position:absolute; top:0; left:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.6); display:flex; justify-content:center;
-    align-items:center; border-radius:12px; color:white; font-weight:bold;">
-    Subscribe to unlock
+    <p style="color:#9ca3af; margin-bottom:20px;">
+      Create, manage, and assign training content to your employees.
+    </p>
+
+    <div style="
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    ">
+
+      <!-- Training Card 1 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Create New Training</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Build custom lessons and modules for your workforce.
+        </p>
+        <button class="btn-primary">Create Training</button>
+      </div>
+
+      <!-- Training Card 2 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Manage Training Library</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Edit, update, and organize your existing training content.
+        </p>
+        <button class="btn-ghost">View Library</button>
+      </div>
+
+      <!-- Training Card 3 -->
+      <div style="
+        background:#111827;
+        border:1px solid #1f2937;
+        padding:20px;
+        border-radius:12px;
+      ">
+        <h3 style="font-size:18px; margin-bottom:8px;">Assign Training</h3>
+        <p style="color:#9ca3af; margin-bottom:12px;">
+          Assign training modules to employees or teams.
+        </p>
+        <button class="btn-ghost">Assign Now</button>
+      </div>
+
+    </div>
+
   </div>
 </section>
-
 
 <!-- ========================= -->
 <!-- PRICING / PAYWALL         -->
 <!-- ========================= -->
 <section id="pricing" class="pricing-section" style="padding:40px 20px;">
+
   <h2>Company Pricing</h2>
-  <p>JobRiot Academy is free for learners. Companies pay for training tools.</p>
+  <p>JobRiot Academy is free for learners. Companies pay for advanced training tools.</p>
 
-  <div class="pricing-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); margin-top:20px;">
+  <!-- Pricing Grid -->
+  <div class="pricing-grid" style="display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); margin-top:30px;">
 
-    <div class="pricing-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+    <!-- Monthly -->
+    <div class="pricing-card" style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
       <h3>Monthly Plan</h3>
-      <p class="price" style="font-size:24px; margin:10px 0;">$29 / month</p>
-      <ul>
+      <p class="price" style="font-size:28px; margin:10px 0; font-weight:bold;">$29 / month</p>
+
+      <ul style="margin:15px 0 20px 0; line-height:1.6;">
         <li>Unlimited employee accounts</li>
         <li>Unlimited AI‑generated lessons</li>
         <li>Training dashboard access</li>
+        <li>Company analytics</li>
+        <li>Email support</li>
       </ul>
-      <button class="btn-primary">Subscribe Monthly</button>
+
+      <button class="btn-primary" style="width:100%;">Subscribe Monthly</button>
     </div>
 
-    <div class="pricing-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+    <!-- Yearly -->
+    <div class="pricing-card" style="background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937; position:relative;">
+      <div style="position:absolute; top:-10px; right:-10px; background:#4ade80; color:black; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:bold;">
+        Best Value
+      </div>
+
       <h3>Yearly Plan</h3>
-      <p class="price" style="font-size:24px; margin:10px 0;">$290 / year</p>
-      <ul>
+      <p class="price" style="font-size:28px; margin:10px 0; font-weight:bold;">$290 / year</p>
+
+      <ul style="margin:15px 0 20px 0; line-height:1.6;">
         <li>2 months free</li>
         <li>Unlimited employee accounts</li>
         <li>Unlimited AI‑generated lessons</li>
         <li>Training dashboard access</li>
+        <li>Advanced analytics</li>
+        <li>Priority support</li>
       </ul>
-      <button class="btn-primary">Subscribe Yearly</button>
+
+      <button class="btn-primary" style="width:100%;">Subscribe Yearly</button>
     </div>
 
   </div>
-</section>
 
-<aside class="hero-card">
-<div class="hero-card-header">
-<div class="hero-card-title">Candidate snapshot</div>
-<div class="hero-card-badge">JobRiot Certified</div>
-</div>
-<div class="hero-card-main">
-<div>
-<div class="hero-card-metric">
-4/6
-<span>courses completed</span>
-</div>
-<p class="hero-card-text">
-This learner has completed core credibility tracks and is actively building job-ready behavior.
-</p>
-</div>
-<ul class="hero-card-list">
-<li>Professional communication</li>
-<li>Reliability & follow-through</li>
-<li>Interview readiness</li>
-<li>Workplace conflict basics</li>
-</ul>
-</div>
-<div class="hero-card-footer">
-<span>Signal to employers: <strong>Ready to interview</strong></span>
-<span>Updated: <strong>Today</strong></span>
-</div>
-</aside>
+  <!-- Guarantee -->
+  <div style="margin-top:30px; background:#0b1020; padding:20px; border-radius:12px; border:1px solid #1f2937;">
+    <p style="margin:0; font-size:14px; color:#9ca3af;">
+      All plans include unlimited employees, unlimited training programs, and full access to JobRiot AI. Cancel anytime.
+    </p>
+  </div>
+
+  <!-- Candidate Snapshot (Hero Card) -->
+  <aside class="hero-card" style="margin-top:40px; background:#0b1020; padding:25px; border-radius:12px; border:1px solid #1f2937;">
+    <div class="hero-card-header" style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="hero-card-title" style="font-size:20px; font-weight:bold;">Candidate Snapshot</div>
+      <div class="hero-card-badge" style="background:#4ade80; color:black; padding:5px 10px; border-radius:6px; font-size:12px; font-weight:bold;">JobRiot Certified</div>
+    </div>
+
+    <div class="hero-card-main" style="margin-top:20px; display:flex; gap:20px; flex-wrap:wrap;">
+      <div>
+        <div class="hero-card-metric" style="font-size:28px; font-weight:bold;">
+          4/6
+          <span style="font-size:14px; color:#9ca3af; display:block;">courses completed</span>
+        </div>
+        <p class="hero-card-text" style="margin-top:10px; color:#9ca3af;">
+          This learner has completed core credibility tracks and is actively building job‑ready behavior.
+        </p>
+      </div>
+
+      <ul class="hero-card-list" style="line-height:1.6; color:#e5e7eb;">
+        <li>Professional communication</li>
+        <li>Reliability & follow‑through</li>
+        <li>Interview readiness</li>
+        <li>Workplace conflict basics</li>
+      </ul>
+    </div>
+
+    <div class="hero-card-footer" style="margin-top:20px; display:flex; justify-content:space-between; color:#9ca3af;">
+      <span>Signal to employers: <strong style="color:white;">Ready to interview</strong></span>
+      <span>Updated: <strong style="color:white;">Today</strong></span>
+    </div>
+  </aside>
+
 </section>
 
 <main>
-<!-- Core features -->
-<section>
-<div class="section-header">
-<div class="section-title-block">
-<h2>Core experience</h2>
-<p>Everything in JobRiot Academy is built to be fast, focused, and credible.</p>
-</div>
-<div class="section-tag">MVP-ready feature set</div>
-</div>
 
-<div class="features-grid">
-<article class="feature-card">
-<div class="feature-label">01 · Courses</div>
-<div class="feature-title">Short, practical tracks</div>
-<p class="feature-body">
-Each course is built around one hiring signal: reliability, communication, interviewing, or workplace behavior.
-</p>
-<ul class="feature-list">
-<li>10–15 minute lessons</li>
-<li>Plain-language examples</li>
-<li>Actionable scripts and templates</li>
-</ul>
-</article>
+  <!-- ========================= -->
+  <!-- CORE FEATURES             -->
+  <!-- ========================= -->
+  <section>
+    <div class="section-header">
+      <div class="section-title-block">
+        <h2>Core experience</h2>
+        <p>Everything in JobRiot Academy is built to be fast, focused, and credible.</p>
+      </div>
+      <div class="section-tag">MVP-ready feature set</div>
+    </div>
 
-<article class="feature-card">
-<div class="feature-label">02 · Lessons</div>
-<div class="feature-title">Lesson-based learning</div>
-<p class="feature-body">
-Every lesson is structured to be digestible and repeatable, even on a phone during a break.
-</p>
-<ul class="feature-list">
-<li>Key takeaways</li>
-<li>Real-world scenarios</li>
-<li>Quick practice prompts</li>
-</ul>
-</article>
+    <div class="features-grid">
+      <article class="feature-card">
+        <div class="feature-label">01 · Courses</div>
+        <div class="feature-title">Short, practical tracks</div>
+        <p class="feature-body">
+          Each course is built around one hiring signal: reliability, communication, interviewing, or workplace behavior.
+        </p>
+        <ul class="feature-list">
+          <li>10–15 minute lessons</li>
+          <li>Plain-language examples</li>
+          <li>Actionable scripts and templates</li>
+        </ul>
+      </article>
 
-<article class="feature-card">
-<div class="feature-label">03 · Credibility</div>
-<div class="feature-title">JobRiot certification badges</div>
-<p class="feature-body">
-Completing a course unlocks a JobRiot badge that employers can see directly in the app.
-</p>
-<ul class="feature-list">
-<li>Shareable profile badge</li>
-<li>Verification inside JobRiot</li>
-<li>Clear hiring signal: “This person follows through.”</li>
-</ul>
-</article>
-</div>
-</section>
+      <article class="feature-card">
+        <div class="feature-label">02 · Lessons</div>
+        <div class="feature-title">Lesson-based learning</div>
+        <p class="feature-body">
+          Every lesson is structured to be digestible and repeatable, even on a phone during a break.
+        </p>
+        <ul class="feature-list">
+          <li>Key takeaways</li>
+          <li>Real-world scenarios</li>
+          <li>Quick practice prompts</li>
+        </ul>
+      </article>
 
-<!-- Courses -->
-<section>
-<div class="section-header">
-<div class="section-title-block">
-<h2>Launch courses</h2>
-<p>Start with the behaviors that move hiring decisions.</p>
-</div>
-<div class="section-tag">Phase 1 curriculum</div>
-</div>
+      <article class="feature-card">
+        <div class="feature-label">03 · Credibility</div>
+        <div class="feature-title">JobRiot certification badges</div>
+        <p class="feature-body">
+          Completing a course unlocks a JobRiot badge that employers can see directly in the app.
+        </p>
+        <ul class="feature-list">
+          <li>Shareable profile badge</li>
+          <li>Verification inside JobRiot</li>
+          <li>Clear hiring signal: “This person follows through.”</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-<div class="courses-grid">
-<article class="course-card">
-<div class="course-meta">
-<span>Course · 45–60 minutes</span>
-<span>Beginner</span>
-</div>
-<div class="course-title">Professional communication</div>
-<p class="course-desc">
-How to message employers, respond on time, and sound like someone they can trust.
-</p>
-<div class="course-tags">
-<span class="course-tag">Text & email scripts</span>
-<span class="course-tag">Follow-up templates</span>
-</div>
-<div class="course-footer">
-<span>Lessons: 6</span>
-<span>Badge: Communication ready</span>
-</div>
-</article>
+  <!-- ========================= -->
+  <!-- COURSES                   -->
+  <!-- ========================= -->
+  <section>
+    <div class="section-header">
+      <div class="section-title-block">
+        <h2>Launch courses</h2>
+        <p>Start with the behaviors that move hiring decisions.</p>
+      </div>
+      <div class="section-tag">Phase 1 curriculum</div>
+    </div>
 
-<article class="course-card">
-<div class="course-meta">
-<span>Course · 45–60 minutes</span>
-<span>Beginner</span>
-</div>
-<div class="course-title">Reliability & follow-through</div>
-<p class="course-desc">
-How to show up, follow through, and make employers feel safe betting on you.
-</p>
-<div class="course-tags">
-<span class="course-tag">Attendance habits</span>
-<span class="course-tag">Expectation setting</span>
-</div>
-<div class="course-footer">
-<span>Lessons: 5</span>
-<span>Badge: Reliable candidate</span>
-</div>
-</article>
+    <div class="courses-grid">
+      <article class="course-card">
+        <div class="course-meta">
+          <span>Course · 45–60 minutes</span>
+          <span>Beginner</span>
+        </div>
+        <div class="course-title">Professional communication</div>
+        <p class="course-desc">
+          How to message employers, respond on time, and sound like someone they can trust.
+        </p>
+        <div class="course-tags">
+          <span class="course-tag">Text & email scripts</span>
+          <span class="course-tag">Follow-up templates</span>
+        </div>
+        <div class="course-footer">
+          <span>Lessons: 6</span>
+          <span>Badge: Communication ready</span>
+        </div>
+      </article>
 
-<article class="course-card">
-<div class="course-meta">
-<span>Course · 45–60 minutes</span>
-<span>Beginner</span>
-</div>
-<div class="course-title">Interview readiness</div>
-<p class="course-desc">
-How to walk into an interview prepared, calm, and clear about your value.
-</p>
-<div class="course-tags">
-<span class="course-tag">Common questions</span>
-<span class="course-tag">Practice prompts</span>
-</div>
-<div class="course-footer">
-<span>Lessons: 6</span>
-<span>Badge: Interview ready</span>
-</div>
-</article>
-</div>
-</section>
+      <article class="course-card">
+        <div class="course-meta">
+          <span>Course · 45–60 minutes</span>
+          <span>Beginner</span>
+        </div>
+        <div class="course-title">Reliability & follow-through</div>
+        <p class="course-desc">
+          How to show up, follow through, and make employers feel safe betting on you.
+        </p>
+        <div class="course-tags">
+          <span class="course-tag">Attendance habits</span>
+          <span class="course-tag">Expectation setting</span>
+        </div>
+        <div class="course-footer">
+          <span>Lessons: 5</span>
+          <span>Badge: Reliable candidate</span>
+        </div>
+      </article>
 
-<!-- Badges & progress -->
-<section>
-<div class="section-header">
-<div class="section-title-block">
-<h2>Badges & progress</h2>
-<p>Make credibility visible—to the learner and to employers.</p>
-</div>
-<div class="section-tag">Signal, not noise</div>
-</div>
+      <article class="course-card">
+        <div class="course-meta">
+          <span>Course · 45–60 minutes</span>
+          <span>Beginner</span>
+        </div>
+        <div class="course-title">Interview readiness</div>
+        <p class="course-desc">
+          How to walk into an interview prepared, calm, and clear about your value.
+        </p>
+        <div class="course-tags">
+          <span class="course-tag">Common questions</span>
+          <span class="course-tag">Practice prompts</span>
+        </div>
+        <div class="course-footer">
+          <span>Lessons: 6</span>
+          <span>Badge: Interview ready</span>
+        </div>
+      </article>
+    </div>
+  </section>
 
-<div class="badges-layout">
-<div class="badge-card">
-<div class="badge-row">
-<div class="badge-icon">JR</div>
-<div>
-<div class="badge-title">JobRiot Certified</div>
-<div class="badge-sub">
-A simple, visual signal that this person has done the work.
-</div>
-</div>
-</div>
-<div class="badge-meta">
-<span class="badge-pill">Visible on JobRiot profile</span>
-<span class="badge-pill">Filterable by employers</span>
-<span class="badge-pill">Shareable link for resumes</span>
-</div>
-</div>
+  <!-- ========================= -->
+  <!-- BADGES & PROGRESS         -->
+  <!-- ========================= -->
+  <section>
+    <div class="section-header">
+      <div class="section-title-block">
+        <h2>Badges & progress</h2>
+        <p>Make credibility visible—to the learner and to employers.</p>
+      </div>
+      <div class="section-tag">Signal, not noise</div>
+    </div>
 
-<div class="badge-card">
-<div class="badge-side">
-<span>Progress tracking shows:</span>
-<span>• Courses started vs. completed</span>
-<span>• Lessons remaining</span>
-<span>• Last activity date</span>
-<span><strong>Phase 1:</strong> Local tracking · <strong>Phase 2:</strong> Backend + analytics</span>
-</div>
-</div>
-</div>
-</section>
+    <div class="badges-layout">
+      <div class="badge-card">
+        <div class="badge-row">
+          <div class="badge-icon">JR</div>
+          <div>
+            <div class="badge-title">JobRiot Certified</div>
+            <div class="badge-sub">
+              A simple, visual signal that this person has done the work.
+            </div>
+          </div>
+        </div>
+        <div class="badge-meta">
+          <span class="badge-pill">Visible on JobRiot profile</span>
+          <span class="badge-pill">Filterable by employers</span>
+          <span class="badge-pill">Shareable link for resumes</span>
+        </div>
+      </div>
 
-<!-- Integration & mobile -->
-<section>
-<div class="section-header">
-<div class="section-title-block">
-<h2>Integration & access</h2>
-<p>Academy is not a side project—it’s part of the JobRiot ecosystem.</p>
-</div>
-<div class="section-tag">Built to plug in</div>
-</div>
+      <div class="badge-card">
+        <div class="badge-side">
+          <span>Progress tracking shows:</span>
+          <span>• Courses started vs. completed</span>
+          <span>• Lessons remaining</span>
+          <span>• Last activity date</span>
+          <span><strong>Phase 1:</strong> Local tracking · <strong>Phase 2:</strong> Backend + analytics</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="integration-grid">
-<div class="integration-card">
-<div class="feature-label">App integration</div>
-<div class="feature-title">Directly connected to JobRiot</div>
-<p class="feature-body">
-Academy progress flows into the main app so employers see more than a resume—they see behavior.
-</p>
-<div class="integration-flow">
-<span class="integration-step">Complete course</span>
-<span class="integration-arrow">→</span>
-<span class="integration-step">Earn badge</span>
-<span class="integration-arrow">→</span>
-<span class="integration-step">Badge appears on profile</span>
-<span class="integration-arrow">→</span>
-<span class="integration-step">Employers filter by “Certified”</span>
-</div>
-</div>
+  <!-- ========================= -->
+  <!-- INTEGRATION & MOBILE      -->
+  <!-- ========================= -->
+  <section>
+    <div class="section-header">
+      <div class="section-title-block">
+        <h2>Integration & access</h2>
+        <p>Academy is not a side project—it’s part of the JobRiot ecosystem.</p>
+      </div>
+      <div class="section-tag">Built to plug in</div>
+    </div>
 
-<div class="integration-card">
-<div class="feature-label">Access</div>
-<div class="feature-title">Mobile-first, distraction-free</div>
-<div class="integration-side">
-<span>• Works on iPhone, Android, and desktop</span>
-<span>• No log-in friction for first-time learners (MVP)</span>
-<span>• Designed for low-light, late-night learning</span>
-</div>
-</div>
-</div>
-</section>
+    <div class="integration-grid">
+      <div class="integration-card">
+        <div class="feature-label">App integration</div>
+        <div class="feature-title">Directly connected to JobRiot</div>
+        <p class="feature-body">
+          Academy progress flows into the main app so employers see more than a resume—they see behavior.
+        </p>
+        <div class="integration-flow">
+          <span class="integration-step">Complete course</span>
+          <span class="integration-arrow">→</span>
+          <span class="integration-step">Earn badge</span>
+          <span class="integration-arrow">→</span>
+          <span class="integration-step">Badge appears on profile</span>
+          <span class="integration-arrow">→</span>
+          <span class="integration-step">Employers filter by “Certified”</span>
+        </div>
+      </div>
+
+      <div class="integration-card">
+        <div class="feature-label">Access</div>
+        <div class="feature-title">Mobile-first, distraction-free</div>
+        <div class="integration-side">
+          <span>• Works on iPhone, Android, and desktop</span>
+          <span>• No log-in friction for first-time learners (MVP)</span>
+          <span>• Designed for low-light, late-night learning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
-<span>© <strong>JobRiot Academy</strong> · Built for real hiring outcomes.</span>
-<span>Phase 1: MVP web · Phase 2: Deep app integration.</span>
+  <span>© <strong>JobRiot Academy</strong> · Built for real hiring outcomes.</span>
+  <span>Phase 1: MVP web · Phase 2: Deep app integration.</span>
 </footer>
-</div>
-</div>
+
+
 <script>
 const generateBtn = document.getElementById("generateLessonBtn");
 const topicInput = document.getElementById("lessonTopic");
@@ -1571,6 +2274,14 @@ function showCompanySignUp() {
 function showCompanySignIn() {
   document.getElementById("companySignUp").style.display = "none";
   document.getElementById("companySignIn").style.display = "block";
+}
+function showCompanyDashboard() {
+  document.getElementById("companyEmployees").style.display = "none";
+  document.getElementById("companyAssignments").style.display = "none";
+  document.getElementById("companyReports").style.display = "none";
+
+  // Show the main dashboard section
+  document.getElementById("companyDashboard").style.display = "block";
 }
 
 </script>
