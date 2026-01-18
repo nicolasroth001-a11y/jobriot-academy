@@ -732,6 +732,351 @@ grid-template-columns: minmax(0, 1fr);
 </style>
 </head>
 <body>
+
+<!-- ========================= -->
+<!-- OPENING SCREEN (PUBLIC)  -->
+<!-- ========================= -->
+<section id="openingScreen" 
+  style="padding:60px 20px; text-align:center; max-width:800px; margin:0 auto;">
+
+  <h1 style="font-size:36px; font-weight:700; margin-bottom:10px;">
+    JobRiot Academy
+  </h1>
+
+  <p style="color:#9ca3af; font-size:18px; margin-bottom:30px;">
+    Train your team. Hire better. Grow faster.
+  </p>
+
+  <!-- CTA Buttons -->
+  <div style="display:flex; justify-content:center; gap:12px; margin-bottom:40px;">
+    <button class="btn-primary" onclick="scrollToSection('signInSection')">
+      Sign In
+    </button>
+    <button class="btn-ghost" onclick="scrollToSection('signUpSection')">
+      Create Account
+    </button>
+  </div>
+
+  <!-- Pricing Preview -->
+  <div style="
+    background:#111827;
+    border:1px solid #1f2937;
+    padding:24px;
+    border-radius:12px;
+    max-width:600px;
+    margin:0 auto;
+  ">
+    <h3 style="font-size:20px; margin-bottom:8px;">Simple Pricing</h3>
+    <p style="color:#9ca3af; margin-bottom:12px;">
+      One plan. Full access. Cancel anytime.
+    </p>
+    <button class="btn-ghost" onclick="scrollToSection('pricingSection')">
+      View Pricing
+    </button>
+  </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- SIGN IN (PUBLIC)          -->
+<!-- ========================= -->
+<section id="signInSection" 
+  style="display:none; padding:60px 20px; max-width:500px; margin:0 auto;">
+
+  <h2 style="font-size:28px; font-weight:600; margin-bottom:10px; text-align:center;">
+    Sign In
+  </h2>
+
+  <p style="color:#9ca3af; text-align:center; margin-bottom:30px;">
+    Access your JobRiot account
+  </p>
+
+  <!-- Email -->
+  <input 
+    type="email" 
+    placeholder="Email" 
+    style="
+      width:100%;
+      padding:12px;
+      margin-bottom:12px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#111827;
+      color:white;
+    "
+  />
+
+  <!-- Password -->
+  <input 
+    type="password" 
+    placeholder="Password" 
+    style="
+      width:100%;
+      padding:12px;
+      margin-bottom:20px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#111827;
+      color:white;
+    "
+  />
+
+  <!-- Sign In Button -->
+  <button class="btn-primary" style="width:100%; margin-bottom:20px;">
+    Sign In
+  </button>
+
+  <!-- Forgot Password -->
+  <p style="text-align:center; color:#9ca3af; margin-bottom:20px;">
+    Forgot your password?
+  </p>
+
+  <!-- Create Account Link -->
+  <p style="text-align:center; color:#9ca3af;">
+    Don’t have an account?
+    <span 
+      onclick="scrollToSection('signUpSection')" 
+      style="color:white; cursor:pointer; text-decoration:underline;">
+      Create one
+    </span>
+  </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- SIGN UP (PUBLIC)          -->
+<!-- ========================= -->
+<section id="signUpSection" 
+  style="display:none; padding:60px 20px; max-width:500px; margin:0 auto;">
+
+  <h2 style="font-size:28px; font-weight:600; margin-bottom:10px; text-align:center;">
+    Create Account
+  </h2>
+
+  <p style="color:#9ca3af; text-align:center; margin-bottom:30px;">
+    Start training your team with JobRiot
+  </p>
+
+  <!-- Company Name -->
+  <input 
+    type="text" 
+    placeholder="Company Name" 
+    style="
+      width:100%;
+      padding:12px;
+      margin-bottom:12px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#111827;
+      color:white;
+    "
+  />
+
+  <!-- Email -->
+  <input 
+    type="email" 
+    placeholder="Email" 
+    style="
+      width:100%;
+      padding:12px;
+      margin-bottom:12px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#111827;
+      color:white;
+    "
+  />
+
+  <!-- Password -->
+  <input 
+    type="password" 
+    placeholder="Password" 
+    style="
+      width:100%;
+      padding:12px;
+      margin-bottom:20px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#111827;
+      color:white;
+    "
+  />
+
+  <!-- Create Account Button -->
+  <button class="btn-primary" style="width:100%; margin-bottom:20px;">
+    Create Account
+  </button>
+
+  <!-- Already have an account -->
+  <p style="text-align:center; color:#9ca3af;">
+    Already have an account?
+    <span 
+      onclick="scrollToSection('signInSection')" 
+      style="color:white; cursor:pointer; text-decoration:underline;">
+      Sign in
+    </span>
+  </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- PRICING SECTION (PUBLIC)  -->
+<!-- ========================= -->
+<section id="pricingSection" 
+  style="padding:60px 20px; max-width:1200px; margin:0 auto;">
+
+  <h2 style="font-size:32px; font-weight:700; margin-bottom:10px; text-align:center;">
+    Pricing
+  </h2>
+
+  <p style="color:#9ca3af; text-align:center; margin-bottom:40px;">
+    Simple, transparent pricing for companies of all sizes.
+  </p>
+
+  <!-- Pricing Grid -->
+  <div style="
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  ">
+
+    <!-- Monthly Plan -->
+    <div style="
+      background:#111827;
+      border:1px solid #1f2937;
+      padding:24px;
+      border-radius:12px;
+    ">
+      <h3 style="font-size:20px; margin-bottom:8px;">Monthly</h3>
+      <p style="color:#9ca3af; margin-bottom:12px;">Full access, billed monthly.</p>
+      <p style="font-size:32px; font-weight:700; margin-bottom:20px;">$9.99</p>
+      <button class="btn-primary" style="width:100%;">Subscribe</button>
+    </div>
+
+    <!-- Yearly Plan -->
+    <div style="
+      background:#111827;
+      border:1px solid #1f2937;
+      padding:24px;
+      border-radius:12px;
+      position:relative;
+    ">
+      <div style="
+        position:absolute;
+        top:12px;
+        right:12px;
+        background:#2563eb;
+        padding:4px 10px;
+        border-radius:6px;
+        font-size:12px;
+        font-weight:600;
+      ">
+        Best Value
+      </div>
+
+      <h3 style="font-size:20px; margin-bottom:8px;">Yearly</h3>
+      <p style="color:#9ca3af; margin-bottom:12px;">Save more with annual billing.</p>
+      <p style="font-size:32px; font-weight:700; margin-bottom:20px;">$99.99</p>
+      <button class="btn-primary" style="width:100%;">Subscribe</button>
+    </div>
+
+  </div>
+
+  <!-- Guarantee -->
+  <p style="text-align:center; color:#9ca3af; margin-top:30px;">
+    30‑day money‑back guarantee. Cancel anytime.
+  </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- PAYWALL (LOCKED FEATURES) -->
+<!-- ========================= -->
+<section id="paywallSection" 
+  style="
+    display:none;
+    padding:60px 20px;
+    max-width:600px;
+    margin:0 auto;
+    text-align:center;
+  ">
+
+  <h2 style="font-size:28px; font-weight:600; margin-bottom:10px;">
+    Unlock JobRiot Company Suite
+  </h2>
+
+  <p style="color:#9ca3af; margin-bottom:30px;">
+    Subscribe to access training tools, employee management, assignments, reports, scouting, and more.
+  </p>
+
+  <!-- Monthly Plan -->
+  <div style="
+    background:#111827;
+    border:1px solid #1f2937;
+    padding:24px;
+    border-radius:12px;
+    margin-bottom:20px;
+  ">
+    <h3 style="font-size:20px; margin-bottom:8px;">Monthly Access</h3>
+    <p style="color:#9ca3af; margin-bottom:12px;">
+      Full company access, billed monthly.
+    </p>
+    <p style="font-size:32px; font-weight:700; margin-bottom:20px;">
+      $29.99 / month
+    </p>
+    <button class="btn-primary" style="width:100%;">Subscribe Monthly</button>
+  </div>
+
+  <!-- Yearly Plan -->
+  <div style="
+    background:#111827;
+    border:1px solid #1f2937;
+    padding:24px;
+    border-radius:12px;
+    margin-bottom:20px;
+    position:relative;
+  ">
+    <div style="
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:#2563eb;
+      padding:4px 10px;
+      border-radius:6px;
+      font-size:12px;
+      font-weight:600;
+    ">
+      Best Value
+    </div>
+
+    <h3 style="font-size:20px; margin-bottom:8px;">Yearly Access</h3>
+    <p style="color:#9ca3af; margin-bottom:12px;">
+      Save more with annual billing.
+    </p>
+    <p style="font-size:32px; font-weight:700; margin-bottom:20px;">
+      $290 / year
+    </p>
+    <button class="btn-primary" style="width:100%;">Subscribe Yearly</button>
+  </div>
+
+  <!-- Restore Purchases -->
+  <button class="btn-ghost" style="width:100%; margin-top:10px;">
+    Restore Purchases
+  </button>
+
+  <!-- Legal -->
+  <p style="color:#9ca3af; font-size:14px; margin-top:20px;">
+    Auto-renews until canceled.  
+    <br>
+    <span style="text-decoration:underline; cursor:pointer;">Terms of Use</span> • 
+    <span style="text-decoration:underline; cursor:pointer;">Privacy Policy</span>
+  </p>
+
+</section>
+
+
+
+
 <!-- ========================= -->
 <!-- GLOBAL NAVIGATION BAR     -->
 <!-- ========================= -->
@@ -1583,6 +1928,114 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
   </div>
 </section>
 
+<!-- ========================= -->
+<!-- EMPLOYEE DASHBOARD        -->
+<!-- ========================= -->
+<section id="employeeDashboard" 
+  style="display:none; padding:40px 20px;">
+
+  <h2 style="font-size:28px; font-weight:700; margin-bottom:10px;">
+    Your Training Dashboard
+  </h2>
+
+  <p style="color:#9ca3af; margin-bottom:30px;">
+    Track your progress and complete assigned lessons.
+  </p>
+
+  <!-- Grid -->
+  <div style="
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  ">
+
+    <!-- Assigned Training -->
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Assigned Training</h3>
+      <p>View and complete your lessons.</p>
+      <button class="btn-secondary">Open Lessons</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Your Progress</h3>
+      <p>See your completion rate and performance.</p>
+      <button class="btn-secondary">View Progress</button>
+    </div>
+
+    <!-- Badges -->
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Badges</h3>
+      <p>Earn badges as you complete training.</p>
+      <button class="btn-secondary">View Badges</button>
+    </div>
+
+    <!-- Reports -->
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Reports</h3>
+      <p>Download your training history.</p>
+      <button class="btn-secondary">View Reports</button>
+    </div>
+
+  </div>
+
+</section>
+<!-- ========================= -->
+<!-- SCOUTING PAGE (COMPANY)   -->
+<!-- ========================= -->
+<section id="scoutingPage" 
+  style="display:none; padding:40px 20px;">
+
+  <h2 style="font-size:28px; font-weight:700; margin-bottom:10px;">
+    Talent Scouting
+  </h2>
+
+  <p style="color:#9ca3af; margin-bottom:30px;">
+    Discover candidates, send assessments, and track results.
+  </p>
+
+  <!-- Search Bar -->
+  <div style="margin-bottom:30px;">
+    <input 
+      type="text" 
+      placeholder="Search candidates..." 
+      style="
+        width:100%;
+        padding:12px;
+        border-radius:8px;
+        border:1px solid #1f2937;
+        background:#111827;
+        color:white;
+      "
+    />
+  </div>
+
+  <!-- Candidate Grid -->
+  <div style="
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  ">
+
+    <!-- Candidate Card -->
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Candidate Name</h3>
+      <p style="color:#9ca3af; margin-bottom:10px;">Role: Frontend Developer</p>
+      <p style="color:#9ca3af; margin-bottom:20px;">Status: New</p>
+      <button class="btn-secondary">Send Assessment</button>
+    </div>
+
+    <!-- Candidate Card -->
+    <div class="dashboard-card" style="background:#0b1020; padding:20px; border-radius:12px;">
+      <h3>Candidate Name</h3>
+      <p style="color:#9ca3af; margin-bottom:10px;">Role: Customer Support</p>
+      <p style="color:#9ca3af; margin-bottom:20px;">Status: Reviewed</p>
+      <button class="btn-secondary">Send Assessment</button>
+    </div>
+
+  </div>
+
+</section>
 
 <!-- ========================= -->
 <!-- COMPANY SIDEBAR NAV       -->
@@ -1628,7 +2081,10 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
     Reports
   </button>
 
- 
+  <button class="btn-ghost" onclick="showScoutingPage()" style="text-align:left;"> 
+    Scouting 
+  </button>
+
   <button class="btn-ghost" onclick="scrollToSection('companyBilling')" style="text-align:left;">
     Billing
   </button>
@@ -1691,6 +2147,9 @@ style="margin-top:20px; padding:20px; background:#0b1020; border-radius:12px;">
     <p style="color:#9ca3af; margin-bottom:20px;">
       Welcome to your training control center.
     </p>
+<button class="btn-secondary" onclick="showScoutingPage()">
+  Open Scouting
+</button>
 
 
   <!-- Metrics Row -->
@@ -2223,6 +2682,21 @@ output.innerHTML = "<p>Error generating lesson.</p>";
     document.getElementById("companyAssignments"),
     document.getElementById("companyReports"),
   ];
+ 
+ const employeeSections = [
+  document.getElementById("employeeDashboard"),
+];
+
+function hideAllSections() {
+  learnerSections.forEach(sec => sec.style.display = "none");
+  companySections.forEach(sec => sec.style.display = "none");
+  employeeSections.forEach(sec => sec.style.display = "none");
+
+  const scouting = document.getElementById("scoutingPage");
+  if (scouting) scouting.style.display = "none";
+}
+
+
 
   function showLearnerView() {
   learnerSections.forEach(sec => sec.style.display = "block");
@@ -2238,6 +2712,52 @@ output.innerHTML = "<p>Error generating lesson.</p>";
 
   // Hide company sign-in after login
   document.getElementById("companySignIn").style.display = "none";
+}
+
+function showCompanyDashboard() {
+  hideAllSections();
+
+  // Show company dashboard + nav
+  document.getElementById("companyDashboard").style.display = "block";
+
+  companySections.forEach(sec => {
+    if (sec) sec.style.display = "block";
+  });
+
+  // Hide public sections
+  document.getElementById("openingScreen").style.display = "none";
+  document.getElementById("signInSection").style.display = "none";
+  document.getElementById("signUpSection").style.display = "none";
+  document.getElementById("pricingSection").style.display = "none";
+  document.getElementById("paywallSection").style.display = "none";
+}
+
+function showEmployeeDashboard() {
+  hideAllSections();
+
+  // Show employee dashboard
+  document.getElementById("employeeDashboard").style.display = "block";
+
+  // Hide public sections
+  document.getElementById("openingScreen").style.display = "none";
+  document.getElementById("signInSection").style.display = "none";
+  document.getElementById("signUpSection").style.display = "none";
+  document.getElementById("pricingSection").style.display = "none";
+  document.getElementById("paywallSection").style.display = "none";
+}
+
+function showScoutingPage() {
+  hideAllSections();
+
+  // Show scouting page
+  document.getElementById("scoutingPage").style.display = "block";
+
+  // Hide public sections
+  document.getElementById("openingScreen").style.display = "none";
+  document.getElementById("signInSection").style.display = "none";
+  document.getElementById("signUpSection").style.display = "none";
+  document.getElementById("pricingSection").style.display = "none";
+  document.getElementById("paywallSection").style.display = "none";
 }
 
 
